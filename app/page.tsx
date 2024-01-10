@@ -6,7 +6,7 @@ function Header() {
   return (
     <div className="bg-white p-3">
       <Image
-        src="images/hf-sig.png"
+        src="/images/hf-sig.png"
         width={196}
         height={41}
         alt="한국주택금융공사"

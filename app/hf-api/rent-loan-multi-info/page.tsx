@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Title from '@/app/ui/title';
 
 import Radio from '@mui/material/Radio';
@@ -9,6 +9,9 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 
 import Button from '@mui/material/Button';
+
+import BChart from './b-chart';
+
 
 function RentList({bankLst}) {
 
@@ -25,8 +28,9 @@ function RentList({bankLst}) {
 
 export default function RentLoanMultiInfo() {
 
- let [loanYm, setLoanYm] = useState();
+  let [loanYm, setLoanYm] = useState();
   let [bankLst, setBankLst] = useState([]);
+  let [chartData, setChartData] = useState();
 
   async function getData() {
   
@@ -47,6 +51,19 @@ export default function RentLoanMultiInfo() {
   
     let rentJson = await res.json();
     setBankLst(rentJson.body.items);
+
+    let chartDataArr = [];
+    rentJson.body.items.forEach((e) => {
+      let eDataArr = [];
+      eDataArr.push(e.bankNm);
+      eDataArr.push(e.loanAmt);
+      chartDataArr.push(eDataArr);
+    })
+    let chartDataObj = {"chartDataArr" : chartDataArr};
+    console.log("chartObj = " + JSON.stringify(chartDataObj));
+
+    setChartData(chartDataObj);
+
   }
 
   return (
@@ -71,8 +88,16 @@ export default function RentLoanMultiInfo() {
       <div className="mx-8 lg:mx-20 my-8">
         <Button variant="outlined" size="large" onClick={getData}>조회</Button>
       </div>
-      <div className="mx-8 lg:mx-20 my-8 p-8">
-        <ul><RentList bankLst={bankLst} /></ul>
+      <div className="flex flex-wrap">
+        <div className="mx-8 lg:mx-20 my-8 p-8">
+          <ul><RentList bankLst={bankLst} /></ul>
+        </div>
+        <div className="w-full lg:w-[550px]">
+          <div className="flex place-content-center">KODEX 200TR Performance (USD)</div>
+          <div className="w-full lg:w-[550px] lg:h-[700px]">
+            <BChart chartData={chartData}/>
+          </div>
+        </div>
       </div>
     </>
   )

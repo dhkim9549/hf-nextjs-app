@@ -10,12 +10,43 @@ import FormControl from '@mui/material/FormControl';
 
 import Button from '@mui/material/Button';
 
+function RentList({bankLst}) {
+
+  const listItems = bankLst.map(item =>
+    <li key={item.bankNm}>
+      {item.bankNm}: {item.avgLoanRat2}
+    </li>
+  );
+
+  return (
+    <ul>{listItems}</ul>
+  )
+}
+
 export default function RentLoanMultiInfo() {
 
-  let [loanYm, setLoanYm] = useState();
+ let [loanYm, setLoanYm] = useState();
+  let [bankLst, setBankLst] = useState([]);
 
-  function getData() {
+  async function getData() {
+  
     console.log("getData()");
+   
+    let apiStr = ""
+      + "?serviceKey=PW2VvwTvkcs%2FWMVLduXzeRL0BPjOYH%2B0wMnsQiyy5UgcrukEjAurATJUNkeA7T%2Bj47s3GAmLzHduip%2BfbxESlQ%3D%3D"
+      + "&pageNo=1"
+      + "&numOfRows=30"
+      + "&dataType=JSON"
+      ;
+  
+    let res = await fetch("https://apis.data.go.kr/B551408/rent-loan-rate-multi-dimensional-info/dimensional-list"
+      + apiStr
+      + "&loanYm=" + loanYm,
+      { next: { revalidate: 30 } }
+    );
+  
+    let rentJson = await res.json();
+    setBankLst(rentJson.body.items);
   }
 
   return (
@@ -39,6 +70,9 @@ export default function RentLoanMultiInfo() {
       </div>
       <div className="mx-8 lg:mx-20 my-8">
         <Button variant="outlined" size="large" onClick={getData}>조회</Button>
+      </div>
+      <div className="mx-8 lg:mx-20 my-8 p-8">
+        <ul><RentList bankLst={bankLst} /></ul>
       </div>
     </>
   )

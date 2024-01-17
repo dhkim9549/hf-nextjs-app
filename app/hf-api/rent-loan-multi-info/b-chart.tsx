@@ -3,7 +3,7 @@
 import React, {useEffect, useRef} from "react";
 
 // import billboard.js
-import bb, {donut} from "billboard.js";
+import bb, {pie} from "billboard.js";
 import "billboard.js/dist/billboard.css";  // default css
 
 // import react wrapper
@@ -18,7 +18,7 @@ export default function BChart({chartData}) {
     data: {
       columns: [
       ],
-      type: donut() // for ESM specify as: bar()
+      type: pie() // for ESM specify as: bar()
     }
   };
 
@@ -33,7 +33,7 @@ export default function BChart({chartData}) {
       console.log("chartData = " + JSON.stringify(chartData));
 
       chart.load({
-        columns: chartData?.chartDataArr,
+        columns: chartData?.chartDataArr
       });
     }
   });

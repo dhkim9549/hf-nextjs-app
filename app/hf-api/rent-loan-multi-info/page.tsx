@@ -92,12 +92,16 @@ export default function RentLoanMultiInfo() {
         <div className="mx-8 lg:mx-20 my-8 p-8">
           <ul><RentList bankLst={bankLst} /></ul>
         </div>
-        <div className="w-full lg:w-[550px]">
-          <div className="flex place-content-center">KODEX 200TR Performance (USD)</div>
-          <div className="w-full lg:w-[550px] lg:h-[700px]">
-            <BChart chartData={chartData}/>
-          </div>
-        </div>
+          {chartData &&
+            <div className="w-full lg:w-[550px]">
+              <div className="flex place-content-center">
+                대출실행금액
+              </div>
+              <div className="w-full lg:w-[550px] lg:h-[700px]">
+                <BChart chartData={chartData}/>
+              </div>
+            </div>
+          }
       </div>
     </>
   )

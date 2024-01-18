@@ -86,13 +86,10 @@ export default function RentLoanMultiInfo() {
         </RadioGroup>
       </div>
       <div className="mx-8 lg:mx-20 my-8">
-        <Button variant="outlined" size="large" onClick={getData}>조회</Button>
+        <Button variant="outlined" size="large" onClick={getData} disabled={!loanYm}>조회</Button>
       </div>
       <div className="flex flex-wrap">
-        <div className="mx-8 lg:mx-20 my-8 p-8">
-          <ul><RentList bankLst={bankLst} /></ul>
-        </div>
-          {chartData &&
+         {chartData &&
             <div className="w-full lg:w-[550px]">
               <div className="flex place-content-center">
                 대출실행금액
@@ -102,7 +99,10 @@ export default function RentLoanMultiInfo() {
               </div>
             </div>
           }
+      <div className="mx-8 lg:mx-20 my-8 p-8">
+        <ul><RentList bankLst={bankLst} /></ul>
       </div>
+   </div>
     </>
   )
 }

@@ -8,7 +8,6 @@ import "billboard.js/dist/billboard.css";  // default css
 
 // import react wrapper
 import BillboardJS, {IChart} from "@billboard.js/react";
-// const BillboardJS = require("@billboard.js/react");  // for CJS
 
 export default function BChart({chartData}) {
 
@@ -36,7 +35,7 @@ export default function BChart({chartData}) {
         columns: chartData?.chartDataArr
       });
     }
-  });
+  }, [chartData]);
 
   return (
     <BillboardJS bb={bb} options={options} ref={chartComponent} />

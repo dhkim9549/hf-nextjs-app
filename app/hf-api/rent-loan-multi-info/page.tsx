@@ -10,21 +10,8 @@ import FormControl from '@mui/material/FormControl';
 
 import Button from '@mui/material/Button';
 
+import BasicTable from './m-table';
 import BChart from './b-chart';
-
-
-function RentList({bankLst}) {
-
-  const listItems = bankLst.map(item =>
-    <li key={item.bankNm}>
-      {item.bankNm}: {item.avgLoanRat2}
-    </li>
-  );
-
-  return (
-    <ul>{listItems}</ul>
-  )
-}
 
 export default function RentLoanMultiInfo() {
 
@@ -60,10 +47,8 @@ export default function RentLoanMultiInfo() {
       chartDataArr.push(eDataArr);
     })
     let chartDataObj = {"chartDataArr" : chartDataArr};
-    console.log("chartObj = " + JSON.stringify(chartDataObj));
-
+    console.log("chartDataObj = " + JSON.stringify(chartDataObj));
     setChartData(chartDataObj);
-
   }
 
   return (
@@ -88,21 +73,23 @@ export default function RentLoanMultiInfo() {
       <div className="mx-8 lg:mx-20 my-8">
         <Button variant="outlined" size="large" onClick={getData} disabled={!loanYm}>조회</Button>
       </div>
-      <div className="flex flex-wrap">
+      <div className="m-8 flex flex-wrap">
          {chartData &&
-            <div className="w-full lg:w-[550px]">
-              <div className="flex place-content-center">
-                대출실행금액
-              </div>
-              <div className="w-full lg:w-[550px] lg:h-[700px]">
-                <BChart chartData={chartData}/>
-              </div>
-            </div>
-          }
-      <div className="mx-8 lg:mx-20 my-8 p-8">
-        <ul><RentList bankLst={bankLst} /></ul>
-      </div>
-   </div>
+           <>
+             <div className="p-8">
+               <BasicTable bankList={bankLst} />
+             </div>
+             <div className="p-8 w-full lg:w-[550px]">
+               <div className="w-full text-center">
+                 대출실행금액
+               </div>
+               <div className="">
+                 <BChart chartData={chartData}/>
+               </div>
+             </div>
+          </>
+         }
+     </div>
     </>
   )
 }

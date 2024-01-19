@@ -28,7 +28,7 @@ export default function Home() {
   return (
     <>
       <Header/>
-      <Title t1="HF" t2="Open" t3="온라인 전시관"/>
+      <Title t1="HF" t2="Open" t3="API 온라인 전시관"/>
       <div className="w-full p-4 flex flex-col lg:flex-row lg:flex-wrap">
         <Item
           title="HF 전세자금보증 추천"

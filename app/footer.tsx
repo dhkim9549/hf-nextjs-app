@@ -88,7 +88,7 @@ export default function Footer() {
               Powerd by
             </h6>
             <p className="mb-4">
-              <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" className="text-gray-600">Vanilla JS</a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" className="text-gray-600">Next.js</a>
             </p>
             <p className="mb-4">
               <a href="https://tailwindcss.com/" className="text-gray-600">Tailwind CSS</a>
@@ -164,7 +164,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="text-center p-6 bg-gray-200">
-        <span>© 2023 Copyright:</span>
+        <span>© 2024 Copyright:</span>
         <a className="text-gray-600 font-semibold" href="https://www.hf.go.kr/">Korea Housing Finance Corporation</a>
       </div>
     </footer>

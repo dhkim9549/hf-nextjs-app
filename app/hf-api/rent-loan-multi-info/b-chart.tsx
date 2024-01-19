@@ -14,6 +14,9 @@ export default function BChart({chartData}) {
   // to get the instance, create ref and pass it to the component
   const chartComponent = useRef<IChart>();
   const options = {
+    legend: {
+      position: "right"
+    },
     data: {
       columns: [
       ],
@@ -22,17 +25,15 @@ export default function BChart({chartData}) {
   };
 
   useEffect(() => {
-    console.log("useEffet()");
     // get the instance from ref
     const chart = chartComponent.current?.instance;
 
     // call APIs
     if (chart) {
-      console.log("load...");
-      console.log("chartData = " + JSON.stringify(chartData));
+      let chartDataArr = chartData?.chartDataArr;
 
       chart.load({
-        columns: chartData?.chartDataArr
+        columns: chartDataArr
       });
     }
   }, [chartData]);

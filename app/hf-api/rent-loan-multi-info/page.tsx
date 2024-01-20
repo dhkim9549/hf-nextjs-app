@@ -59,7 +59,7 @@ export default function RentLoanMultiInfo() {
         </blockquote>
       </div>
       <div className="m-4 p-8 bg-white rounded-lg" id="input_area">
-        <label>조회구분을 선택하세요....{loanYm}</label>
+        <label>조회구분을 선택하세요.</label>
         <RadioGroup
           row
           name="loanYm"
@@ -76,7 +76,7 @@ export default function RentLoanMultiInfo() {
       <div className="m-4 flex flex-wrap">
          {chartData &&
            <>
-             <div>
+             <div className="w-full sm:w-[450px]">
                <DataGrid bankList={bankLst} />
              </div>
              <div className="p-8 w-full lg:w-[550px]">

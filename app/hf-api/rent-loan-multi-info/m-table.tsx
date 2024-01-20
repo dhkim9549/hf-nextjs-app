@@ -2,9 +2,9 @@ import { DataGrid } from '@mui/x-data-grid';
 import { NumericFormat } from 'react-number-format';
 
 const columns = [
-  { field: 'bankNm', headerName: '은행', width: 100, headerAlign: 'center' },
-  { field: 'avgLoanRat2', headerName: '대출금리(%)', width: 100, type: 'number', headerAlign: 'center' },
-  { field: 'cnt', headerName: '대출실행건수', width: 100, type: 'number', headerAlign: 'center' },
+  { field: 'bankNm', headerName: '은행', width: 100, headerAlign: 'center', align: 'center' },
+  { field: 'avgLoanRat2', headerName: '대출금리(%)', width: 90, type: 'number', headerAlign: 'center' },
+  { field: 'cnt', headerName: '대출실행건수', width: 90, type: 'number', headerAlign: 'center' },
   { field: 'loanAmt', headerName: '대출실행금액(원)', width: 150, type: 'number', headerAlign: 'center'}
 ];
 

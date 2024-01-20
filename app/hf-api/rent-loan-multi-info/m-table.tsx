@@ -29,6 +29,14 @@ export default function DataTable({bankList}) {
         rows={rows}
         columns={columns}
         hideFooterPagination={true}
+        sx={{
+          boxShadow: 2,
+          border: 0,
+          borderColor: "primary.light",
+          "& .MuiDataGrid-cell:hover": {
+            color: "primary.main",
+          },
+        }}
       />
     </div>
   );

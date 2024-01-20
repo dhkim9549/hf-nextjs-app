@@ -10,7 +10,7 @@ import FormControl from '@mui/material/FormControl';
 
 import Button from '@mui/material/Button';
 
-import BasicTable from './m-table';
+import DataGrid from './m-table';
 import BChart from './b-chart';
 
 export default function RentLoanMultiInfo() {
@@ -70,14 +70,14 @@ export default function RentLoanMultiInfo() {
           <FormControlLabel value="L1Y" control={<Radio />} label="최근 1년" />
         </RadioGroup>
       </div>
-      <div className="mx-8 lg:mx-20 my-8">
+      <div className="m-8 lg:mx-20">
         <Button variant="outlined" size="large" onClick={getData} disabled={!loanYm}>조회</Button>
       </div>
-      <div className="m-8 flex flex-wrap">
+      <div className="m-4 flex flex-wrap">
          {chartData &&
            <>
-             <div className="p-8">
-               <BasicTable bankList={bankLst} />
+             <div>
+               <DataGrid bankList={bankLst} />
              </div>
              <div className="p-8 w-full lg:w-[550px]">
                <div className="w-full text-center">

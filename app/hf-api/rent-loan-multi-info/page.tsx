@@ -68,9 +68,9 @@ export default function RentLoanMultiInfo() {
           defaultValue={loanYm}
           onChange={(e) => setLoanYm(e.target.value)}
         >
-          <FormControlLabel sx={{ mr:4 }} value="L1M" control={<Radio />} label="최근 1개월" />
-          <FormControlLabel sx={{ mr:4 }} value="L3M" control={<Radio />} label="최근 3개월" />
-          <FormControlLabel sx={{ mr:4 }} value="L1Y" control={<Radio />} label="최근 1년" />
+          <FormControlLabel sx={{ mr:2 }} value="L1M" control={<Radio />} label="최근 1개월" />
+          <FormControlLabel sx={{ mr:2 }} value="L3M" control={<Radio />} label="최근 3개월" />
+          <FormControlLabel sx={{ mr:2 }} value="L1Y" control={<Radio />} label="최근 1년" />
         </RadioGroup>
       </Paper>
       <div className="m-8 lg:mx-20">
@@ -92,8 +92,7 @@ export default function RentLoanMultiInfo() {
              </div>
           </>
          }
-     </div>
-     <div className="m-8 p-8 bg-white">aaa</div>
+      </div>
     </div>
   )
 }

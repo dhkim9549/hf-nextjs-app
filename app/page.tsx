@@ -33,7 +33,7 @@ export default function Home() {
         <Item
           title="HF 전세자금보증 추천"
           cont="한국주택금융공사에서 제공하는 전세보증 상품 추천 서비스"
-          href="hf-api/hg-jnse-rcmd.html"
+          href="hf-api/hg-jnse-rcmd"
         />
         <Item
           title="은행별 전세대출 금리"

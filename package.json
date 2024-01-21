@@ -12,6 +12,7 @@
     "@billboard.js/react": "^1.1.1",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.15.5",
     "@mui/joy": "^5.0.0-beta.21",
     "@mui/material": "^5.15.3",
     "@mui/material-next": "^6.0.0-alpha.118",

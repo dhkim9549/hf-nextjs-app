@@ -11,6 +11,8 @@ import FormControl from '@mui/material/FormControl';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 
 import { NumericFormat } from 'react-number-format';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -47,7 +49,7 @@ export default function RentLoanMultiInfo() {
           HF 전세자금보증 추천{rentGrntAmt}
         </blockquote>
       </div>
-      <Paper sx={{m:4, p:8, display: 'flex', gap: 8}}>
+      <Paper className="m-4 p-12 flex flex-wrap flex-col lg:flex-row gap-3 lg:gap-6">
         <NumericFormat
           label="임차보증금액"
           value={rentGrntAmt}
@@ -75,8 +77,40 @@ export default function RentLoanMultiInfo() {
         <Button variant="contained" size="large" onClick={getData}>조회</Button>
       </div>
       <div className="m-4 flex flex-wrap">
+        <Box
+          sx={{
+            bgcolor: 'background.paper',
+            boxShadow: 1,
+            borderRadius: 1,
+            p: 2,
+            m: 2,
+          }}
+          className="w-full lg:w-[300px]"
+        >
+          <Box sx={{ color: 'text.secondary' }}>Sessions</Box>
+          <Box sx={{ color: 'text.primary', fontSize: 34, fontWeight: 'medium' }}>
+            98.3 K
+          </Box>
+          <Box
+            component={TrendingUpIcon}
+            sx={{ color: 'success.dark', fontSize: 16, verticalAlign: 'sub' }}
+          />
+          <Box
+            sx={{
+              color: 'info.light',
+              display: 'inline',
+              fontWeight: 'medium',
+              mx: 0.5,
+            }}
+          >
+            18.77%
+          </Box>
+          <Box sx={{ color: 'text.secondary', display: 'inline', fontSize: 12 }}>
+            vs. last week
+          </Box>
+        </Box>
       </div>
-    </div>
+   </div>
   )
 }
 

@@ -49,7 +49,7 @@ export default function RentLoanMultiInfo() {
           HF 전세자금보증 추천{rentGrntAmt}
         </blockquote>
       </div>
-      <Paper className="m-4 p-12 flex flex-wrap flex-col lg:flex-row gap-3 lg:gap-6">
+      <Paper className="m-4 p-12 flex flex-wrap flex-col lg:flex-row gap-3 lg:gap-12">
         <NumericFormat
           label="임차보증금액"
           value={rentGrntAmt}
@@ -67,7 +67,7 @@ export default function RentLoanMultiInfo() {
           decimalScale={0}
         />
         <TextField
-          id="trgtLwdgCd" label="목적물주소 법정동코드" variant="standard"
+          id="trgtLwdgCd" label="목적물주소 법정동코드" variant="outlined"
           inputProps={{min: 0, maxLength:10 }}
           onChange={e => {
           }}
@@ -83,7 +83,6 @@ export default function RentLoanMultiInfo() {
             boxShadow: 1,
             borderRadius: 1,
             p: 2,
-            m: 2,
           }}
           className="w-full lg:w-[300px]"
         >

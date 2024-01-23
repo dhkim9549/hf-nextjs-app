@@ -17,7 +17,6 @@ export default function GrntProd({prodObj}) {
   }
 
   useEffect(() => {
-    console.log("useEffect()");
     getProdInfoWrap();
   }, []);
 

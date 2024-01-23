@@ -21,13 +21,15 @@ import InputAdornment from '@mui/material/InputAdornment';
 
 export default function RentLoanMultiInfo() {
 
+  let [stts, setStts] = useState();
   let [rentGrntAmt, setRentGrntAmt] = useState();
   let [trgtLwdgCd, setTrgtLwdgCd] = useState();
   let [age, setAge] = useState();
 
-  let [prodLst, setProdLst] = useState(null);
+  let [prodLst, setProdLst] = useState();
 
   async function getRcmdDataWrap() {
+    setStts(1);
     setProdLst(null);
     let items = await getRcmdData(rentGrntAmt, trgtLwdgCd, age);
     console.log("items = " + items);
@@ -84,7 +86,7 @@ export default function RentLoanMultiInfo() {
       <div className="m-8 lg:mx-20">
         <Button variant="contained" size="large" onClick={getRcmdDataWrap}>조회</Button>
       </div>
-      <ProdLst prodLst={prodLst} />
+      {stts ? <ProdLst prodLst={prodLst} /> : "blank"}
    </div>
   )
 }
@@ -93,12 +95,12 @@ function ProdLst({prodLst}) {
   return (
     <>
       <div className="m-4 flex flex-wrap gap-3">
-       {prodLst && prodLst.map(x => 
+       {prodLst ? prodLst.map(x => 
          <GrntProd
            key={x.rcmdProrRnk}
            prodObj={x}
          />
-       )}
+       ) : "loading..."}
       </div>
       {prodLst &&
         <div className="m-4 p-4">

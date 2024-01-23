@@ -32,7 +32,6 @@ export default function RentLoanMultiInfo() {
     setStts(1);
     setProdLst(null);
     let items = await getRcmdData(rentGrntAmt, trgtLwdgCd, age);
-    console.log("items = " + items);
     setProdLst(items);
   }
 

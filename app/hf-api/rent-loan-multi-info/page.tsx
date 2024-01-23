@@ -14,6 +14,7 @@ import Card from '@mui/material/Card';
 
 import DataGrid from './m-table';
 import BChart from './b-chart';
+import { getLoanRateData } from './get-data';
 
 export default function RentLoanMultiInfo() {
 
@@ -22,34 +23,19 @@ export default function RentLoanMultiInfo() {
   let [chartData, setChartData] = useState();
 
   async function getData() {
+
+    let items = await getLoanRateData(loanYm);
   
-    console.log("getData()");
-   
-    let apiStr = ""
-      + "?serviceKey=PW2VvwTvkcs%2FWMVLduXzeRL0BPjOYH%2B0wMnsQiyy5UgcrukEjAurATJUNkeA7T%2Bj47s3GAmLzHduip%2BfbxESlQ%3D%3D"
-      + "&pageNo=1"
-      + "&numOfRows=30"
-      + "&dataType=JSON"
-      ;
-  
-    let res = await fetch("https://apis.data.go.kr/B551408/rent-loan-rate-multi-dimensional-info/dimensional-list"
-      + apiStr
-      + "&loanYm=" + loanYm,
-      { next: { revalidate: 30 } }
-    );
-  
-    let rentJson = await res.json();
-    setBankLst(rentJson.body.items);
+    setBankLst(items);
 
     let chartDataArr = [];
-    rentJson.body.items.forEach((e) => {
+    items.forEach((e) => {
       let eDataArr = [];
       eDataArr.push(e.bankNm);
       eDataArr.push(e.loanAmt);
       chartDataArr.push(eDataArr);
     })
     let chartDataObj = {"chartDataArr" : chartDataArr};
-    console.log("chartDataObj = " + JSON.stringify(chartDataObj));
     setChartData(chartDataObj);
   }
 

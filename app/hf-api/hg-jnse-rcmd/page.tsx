@@ -5,6 +5,8 @@ import { useState, useEffect} from 'react';
 import { getRcmdData } from './get-data';
 import Title from '@/app/ui/title';
 import GrntProd from './grnt-prod';
+import DataGo from './data-go';
+import Footer from './footer';
 
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -85,7 +87,9 @@ export default function RentLoanMultiInfo() {
       <div className="m-8 lg:mx-20">
         <Button variant="contained" size="large" onClick={getRcmdDataWrap}>조회</Button>
       </div>
-      {stts ? <ProdLst prodLst={prodLst} /> : "blank"}
+      {stts ? <ProdLst prodLst={prodLst} /> : ""}
+      <DataGo />
+      <Footer />
    </div>
   )
 }

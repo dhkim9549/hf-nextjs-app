@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 
 import Title from '@/app/ui/title';
 

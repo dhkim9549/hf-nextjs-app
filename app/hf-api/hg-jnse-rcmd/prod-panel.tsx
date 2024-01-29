@@ -9,6 +9,7 @@ export default function ProdPanel({queryObj}) {
   let [maxRentAmtMap, setMaxRentAmtMap] = useState();
 
   useEffect(() => {
+    setRcmdItems();
     getRcmdProdData(queryObj).then((x) => {
       setRcmdItems(x.rcmdItems);
       setProdInfoMap(x.prodInfoMap);

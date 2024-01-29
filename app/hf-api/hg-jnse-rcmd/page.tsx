@@ -1,12 +1,12 @@
 'use client'
 
-import { useState, useEffect} from 'react';
+import { useState } from 'react';
 
-import { getRcmdData } from './get-data';
 import Title from '@/app/ui/title';
 import GrntProd from './grnt-prod';
 import DataGo from './data-go';
 import Footer from './footer';
+import ProdPanel from './prod-panel';
 
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -27,14 +27,11 @@ export default function RentLoanMultiInfo() {
   let [rentGrntAmt, setRentGrntAmt] = useState();
   let [trgtLwdgCd, setTrgtLwdgCd] = useState();
   let [age, setAge] = useState();
+  let [queryObj, setQueryObj] = useState();
 
-  let [prodLst, setProdLst] = useState();
-
-  async function getRcmdDataWrap() {
+  function setRcmdDataQuery() {
+    setQueryObj({rentGrntAmt, trgtLwdgCd, age});
     setStts(1);
-    setProdLst(null);
-    let items = await getRcmdData(rentGrntAmt, trgtLwdgCd, age);
-    setProdLst(items);
   }
 
   return (
@@ -85,31 +82,11 @@ export default function RentLoanMultiInfo() {
  
       </Paper>
       <div className="m-8 lg:mx-20">
-        <Button variant="contained" size="large" onClick={getRcmdDataWrap}>조회</Button>
+        <Button variant="contained" size="large" onClick={setRcmdDataQuery}>조회</Button>
       </div>
-      {stts ? <ProdLst prodLst={prodLst} /> : ""}
+      {stts ? <ProdPanel queryObj={queryObj} /> : ""}
       <DataGo />
       <Footer />
    </div>
-  )
-}
-
-function ProdLst({prodLst}) {
-  return (
-    <>
-      <div className="m-4 flex flex-wrap gap-3">
-       {prodLst ? prodLst.map(x => 
-         <GrntProd
-           key={x.rcmdProrRnk}
-           prodObj={x}
-         />
-       ) : "loading..."}
-      </div>
-      {prodLst &&
-        <div className="m-4 p-4">
-          {prodLst.length} 건이 조회되었습니다.
-        </div>
-      }
-    </>
   )
 }

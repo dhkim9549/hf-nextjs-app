@@ -1,8 +1,26 @@
 'use server'
 
-import { redirect } from 'next/navigation';
+export async function getRcmdProdData(queryObj) {
 
-export async function getRcmdData(rentGrntAmt, trgtLwdgCd, age) {
+  let rcmdItems = await getRcmdData(queryObj);
+
+  const prodInfoMap = new Map();
+  await Promise.all(rcmdItems.map(async (x) => {
+    const rsps = await getProdInfo(x.grntDvcd);
+    prodInfoMap.set(x.grntDvcd, rsps);
+  }));
+
+  const maxRentAmtMap = new Map();
+  await Promise.all(rcmdItems.map(async (x) => {
+    const rsps = await getMaxRentAmtList(x.grntDvcd);
+    maxRentAmtMap.set(x.grntDvcd, rsps);
+  }));
+
+  return {rcmdItems, prodInfoMap, maxRentAmtMap};
+
+}
+
+export async function getRcmdData({rentGrntAmt, trgtLwdgCd, age}) {
 
   let apiStr = ""
     + "?serviceKey=PW2VvwTvkcs%2FWMVLduXzeRL0BPjOYH%2B0wMnsQiyy5UgcrukEjAurATJUNkeA7T%2Bj47s3GAmLzHduip%2BfbxESlQ%3D%3D"

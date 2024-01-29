@@ -13,7 +13,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <div className="bg-slate-800 text-slate-100 text-center p-1">
+          FAIL FAST 
+        </div>
+        {children}
+      </body>
     </html>
   )
 }

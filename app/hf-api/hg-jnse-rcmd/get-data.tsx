@@ -2,6 +2,9 @@
 
 export async function getRcmdProdData(queryObj) {
 
+  console.log("getRcmdProdData() start...");
+  console.log("queryObj = " + JSON.stringify(queryObj));
+
   let rcmdItems = await getRcmdData(queryObj);
 
   const prodInfoMap = new Map();
@@ -15,6 +18,8 @@ export async function getRcmdProdData(queryObj) {
     const rsps = await getMaxRentAmtList(x.grntDvcd);
     maxRentAmtMap.set(x.grntDvcd, rsps);
   }));
+
+  console.log("getRcmdProdData() end...");
 
   return {rcmdItems, prodInfoMap, maxRentAmtMap};
 
@@ -60,9 +65,8 @@ export async function getProdInfo(grntDvcd) {
   );
 
   let prodInfoJson = await res.json();
-  let prodInfoStr = JSON.stringify(prodInfoJson.body.item);
 
-  return JSON.parse(prodInfoStr);
+  return prodInfoJson.body.item;
 }
 
 export async function getMaxRentAmtList(grntDvcd) {
@@ -82,7 +86,6 @@ export async function getMaxRentAmtList(grntDvcd) {
   );
 
   let prodInfoJson = await res.json();
-  let prodInfoStr = JSON.stringify(prodInfoJson.body.items);
 
-  return JSON.parse(prodInfoStr);
+  return prodInfoJson.body.items;
 }

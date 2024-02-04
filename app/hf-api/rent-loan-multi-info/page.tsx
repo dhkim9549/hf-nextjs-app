@@ -24,6 +24,8 @@ export default function RentLoanMultiInfo() {
 
   async function getData() {
 
+    console.log("getData() start...");
+
     let items = await getLoanRateData(loanYm);
   
     setBankLst(items);
@@ -37,6 +39,8 @@ export default function RentLoanMultiInfo() {
     })
     let chartDataObj = {"chartDataArr" : chartDataArr};
     setChartData(chartDataObj);
+
+    console.log("getData() end...");
   }
 
   return (
@@ -51,7 +55,7 @@ export default function RentLoanMultiInfo() {
         <RadioGroup
           row
           name="loanYm"
-          defaultValue={loanYm}
+          defaultValue={"L1M"}
           onChange={(e) => setLoanYm(e.target.value)}
         >
           <FormControlLabel sx={{ mr:2 }} value="L1M" control={<Radio />} label="최근 1개월" />

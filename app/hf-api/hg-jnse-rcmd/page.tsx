@@ -62,7 +62,7 @@ export default function RentLoanMultiInfo() {
         <TextField
           id="trgtLwdgCd" label="목적물주소 법정동코드" variant="filled"
           inputProps={{min: 0, maxLength:10 }}
-          onChange={e => {
+          onChange={(e) => {
             setTrgtLwdgCd(e.target.value);
           }}
         />

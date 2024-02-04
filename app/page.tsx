@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import Footer from './footer.tsx'
 import Title from '@/app/ui/title'
 
@@ -17,10 +18,10 @@ function Header() {
 
 function Item({title, cont, href}) {
   return (
-    <a className="bg-white p-5 m-2 lg:w-96" href={href}>
+    <Link className="bg-white p-5 m-2 lg:w-96" href={href}>
       <p className="text-slate-900 text-2xl font-bold my-4">{title}</p>
       <div>{cont}</div>
-    </a>
+    </Link>
   )
 }
 

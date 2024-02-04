@@ -28,7 +28,7 @@ export default function RcmdProdItem({prodObj, prodInfo, maxRentAmtList}) {
       <div className="text-slate-900">보증한도: {prodObj.grntLmtAmt.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</div>
       <div className="text-slate-900">대출한도: {prodObj.loanLmtAmt.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</div>
       <div className="text-slate-900">추천보증상품구분: {prodInfo?.rcmdGrntProdDvcd}</div>
-      <div className="text-slate-900">신청대상 요약:</div>
+      <div className="text-slate-900">신청대상 요약</div>
         <ul className="list-disc text-sm px-6">{reqTrgtListItems}</ul>
       <div className="text-slate-900">문의처: {prodInfo?.qscNm}</div>
       <div className="text-slate-900">문의처 전화번호: {prodInfo?.qscTlno}</div>

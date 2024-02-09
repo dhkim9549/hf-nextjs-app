@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 import Title from '@/app/ui/title';
 
@@ -8,7 +9,6 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
-import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Card from '@mui/material/Card';
 
@@ -21,6 +21,10 @@ export default function RentLoanMultiInfo() {
   let [loanYm, setLoanYm] = useState("L1M");
   let [bankLst, setBankLst] = useState([]);
   let [chartData, setChartData] = useState();
+
+  useEffect(() => {
+    getData();
+  }, [loanYm]);
 
   async function getData() {
 
@@ -63,9 +67,6 @@ export default function RentLoanMultiInfo() {
           <FormControlLabel sx={{ mr:2 }} value="L1Y" control={<Radio />} label="최근 1년" />
         </RadioGroup>
       </Paper>
-      <div className="m-8 lg:mx-20">
-        <Button variant="contained" size="large" onClick={getData} disabled={!loanYm}>조회</Button>
-      </div>
       <div className="m-4 flex flex-wrap">
          {chartData &&
            <>

@@ -5,15 +5,16 @@ import GrntProdItem from './grnt-prod-item';
 export default function ProdPanel({queryObj}) {
 
   let [rcmdItems, setRcmdItems] = useState();
-  let [prodInfoMap, setProdInfoMap] = useState();
-  let [maxRentAmtMap, setMaxRentAmtMap] = useState();
+  let [prodInfoObj, setProdInfoMap] = useState();
+  let [maxRentAmtObj, setMaxRentAmtMap] = useState();
 
   useEffect(() => {
     setRcmdItems();
     getRcmdProdData(queryObj).then((x) => {
+      console.log("x = " + JSON.stringify(x));
       setRcmdItems(x.rcmdItems);
-      setProdInfoMap(x.prodInfoMap);
-      setMaxRentAmtMap(x.maxRentAmtMap);
+      setProdInfoMap(x.prodInfoObj);
+      setMaxRentAmtMap(x.maxRentAmtObj);
     });
   }, [queryObj]);
 
@@ -24,8 +25,8 @@ export default function ProdPanel({queryObj}) {
          <GrntProdItem
            key={x.rcmdProrRnk}
            prodObj={x}
-           prodInfo={prodInfoMap.get(x.grntDvcd)}
-           maxRentAmtList={maxRentAmtMap.get(x.grntDvcd)}
+           prodInfo={prodInfoObj[x.grntDvcd]}
+           maxRentAmtList={maxRentAmtObj[x.grntDvcd]}
          />
        ) : "loading..."}
       </div>

@@ -30,6 +30,8 @@ export default function RentLoanMultiInfo() {
 
     console.log("getData() start...");
 
+    setChartData();
+
     let items = await getLoanRateData(loanYm);
   
     setBankLst(items);
@@ -60,7 +62,9 @@ export default function RentLoanMultiInfo() {
           row
           name="loanYm"
           defaultValue={"L1M"}
-          onChange={(e) => setLoanYm(e.target.value)}
+          onChange={(e) => {
+            setLoanYm(e.target.value)
+          }}
         >
           <FormControlLabel sx={{ mr:2 }} value="L1M" control={<Radio />} label="최근 1개월" />
           <FormControlLabel sx={{ mr:2 }} value="L3M" control={<Radio />} label="최근 3개월" />
@@ -68,7 +72,7 @@ export default function RentLoanMultiInfo() {
         </RadioGroup>
       </Paper>
       <div className="m-4 flex flex-wrap">
-         {chartData &&
+         {chartData ? 
            <>
              <div className="w-full sm:w-[450px]">
                <DataGrid bankList={bankLst} />
@@ -82,6 +86,7 @@ export default function RentLoanMultiInfo() {
                </div>
              </div>
           </>
+          : "loading..."
          }
       </div>
     </div>

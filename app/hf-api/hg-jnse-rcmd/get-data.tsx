@@ -7,25 +7,30 @@ export async function getRcmdProdData(queryObj) {
 
   let rcmdItems = await getRcmdData(queryObj);
 
-  const prodInfoMap = new Map();
+  let prodInfoObj = {}; 
   await Promise.all(rcmdItems.map(async (x) => {
     const rsps = await getProdInfo(x.grntDvcd);
-    prodInfoMap.set(x.grntDvcd, rsps);
+    prodInfoObj[x.grntDvcd] = rsps;
   }));
 
-  const maxRentAmtMap = new Map();
+  let maxRentAmtObj = {}; 
   await Promise.all(rcmdItems.map(async (x) => {
     const rsps = await getMaxRentAmtList(x.grntDvcd);
-    maxRentAmtMap.set(x.grntDvcd, rsps);
+    maxRentAmtObj[x.grntDvcd] = rsps;
   }));
+
+  let x = {rcmdItems, prodInfoObj, maxRentAmtObj};
+  console.log(">>> x = " + JSON.stringify(x));
 
   console.log("getRcmdProdData() end...");
 
-  return {rcmdItems, prodInfoMap, maxRentAmtMap};
+  return x;
 
 }
 
 export async function getRcmdData({rentGrntAmt, trgtLwdgCd, age}) {
+
+  console.log("getRcmdData() start...");
 
   let apiStr = ""
     + "?serviceKey=PW2VvwTvkcs%2FWMVLduXzeRL0BPjOYH%2B0wMnsQiyy5UgcrukEjAurATJUNkeA7T%2Bj47s3GAmLzHduip%2BfbxESlQ%3D%3D"
@@ -40,15 +45,19 @@ export async function getRcmdData({rentGrntAmt, trgtLwdgCd, age}) {
     + "&trgtLwdgCd=" + trgtLwdgCd
     + "&age=" + age
     + "&weddStcd=1&myIncmAmt=0&myTotDebtAmt=0&ownHsCnt=0&grntPrmeActnDvcdCont=",
-    { next: { revalidate: 3600 } }
+    { next: { revalidate: 600 } }
   );
 
   let rentJson = await res.json();
+
+  console.log("getRcmdData() end...");
 
   return rentJson.body.items;
 }
 
 export async function getProdInfo(grntDvcd) {
+
+  console.log(`getProdInfo(${grntDvcd}) start...`);
 
   let apiStr = ""
     + "?serviceKey=PW2VvwTvkcs%2FWMVLduXzeRL0BPjOYH%2B0wMnsQiyy5UgcrukEjAurATJUNkeA7T%2Bj47s3GAmLzHduip%2BfbxESlQ%3D%3D"
@@ -61,15 +70,19 @@ export async function getProdInfo(grntDvcd) {
     + apiStr
     + "&grntDvcd=" + grntDvcd
     + "",
-    { next: { revalidate: 3600 } }
+    { next: { revalidate: 600 } }
   );
 
   let prodInfoJson = await res.json();
+
+  console.log(`getProdInfo(${grntDvcd}) end...`);
 
   return prodInfoJson.body.item;
 }
 
 export async function getMaxRentAmtList(grntDvcd) {
+
+  console.log("getMaxRentAmtList() start...");
 
   let apiStr = ""
     + "?serviceKey=PW2VvwTvkcs%2FWMVLduXzeRL0BPjOYH%2B0wMnsQiyy5UgcrukEjAurATJUNkeA7T%2Bj47s3GAmLzHduip%2BfbxESlQ%3D%3D"
@@ -82,10 +95,12 @@ export async function getMaxRentAmtList(grntDvcd) {
     + apiStr
     + "&grntDvcd=" + grntDvcd
     + "",
-    { next: { revalidate: 3600 } }
+    { next: { revalidate: 600 } }
   );
 
   let prodInfoJson = await res.json();
+
+  console.log("getMaxRentAmtList() end...");
 
   return prodInfoJson.body.items;
 }

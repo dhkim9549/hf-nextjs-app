@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 
 import Title from '@/app/ui/title';
 
@@ -16,9 +17,21 @@ import DataGrid from './m-table';
 import BChart from './b-chart';
 import { getLoanRateData } from './get-data';
 
-export default function RentLoanMultiInfo() {
+export default function RentLoanMultiInfo({
+  params,
+  searchParams,
+}: {
+  params: { slug: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+}) {
 
-  let [loanYm, setLoanYm] = useState("L1M");
+  console.log("params = " + JSON.stringify(params));
+  console.log("searchParams = " + JSON.stringify(searchParams));
+
+  const pathname = usePathname();
+  const { replace } = useRouter();
+
+  let [loanYm, setLoanYm] = useState(searchParams.loanYm ?? "L1M");
   let [bankLst, setBankLst] = useState([]);
   let [chartData, setChartData] = useState();
 
@@ -29,6 +42,10 @@ export default function RentLoanMultiInfo() {
   async function getData() {
 
     console.log("getData() start...");
+
+    let params = new URLSearchParams();
+    params.set("loanYm", loanYm);
+    replace(`${pathname}?${params.toString()}`);
 
     setChartData();
 

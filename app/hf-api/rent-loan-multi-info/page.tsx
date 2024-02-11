@@ -78,7 +78,7 @@ export default function RentLoanMultiInfo({
         <RadioGroup
           row
           name="loanYm"
-          defaultValue={"L1M"}
+          defaultValue={searchParams.loanYm ?? "L1M"}
           onChange={(e) => {
             setLoanYm(e.target.value)
           }}

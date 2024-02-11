@@ -18,7 +18,6 @@ export async function getLoanRateData(loanYm) {
   );
 
   let rentJson = await res.json();
-  console.log("rentJson = " + JSON.stringify(rentJson.body.items));
 
   console.log("getLoanRateData() end...");
 

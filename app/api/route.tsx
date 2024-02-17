@@ -18,7 +18,8 @@ export async function GET(request: Request) {
   );
 
   let rentJson = await res.json();
+  rentJson.host = process.env.DB_HOST;
   console.log("rentJson = " + JSON.stringify(rentJson.body.items));
 
-  return Response.json(rentJson.body.items)
+  return Response.json(rentJson)
 }

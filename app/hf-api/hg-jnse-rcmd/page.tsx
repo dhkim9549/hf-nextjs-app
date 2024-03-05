@@ -27,10 +27,11 @@ export default function RentLoanMultiInfo() {
   let [rentGrntAmt, setRentGrntAmt] = useState();
   let [trgtLwdgCd, setTrgtLwdgCd] = useState();
   let [age, setAge] = useState();
+  let [weddStcd, setWeddStcd] = useState();
   let [queryObj, setQueryObj] = useState();
 
   function setRcmdDataQuery() {
-    setQueryObj({rentGrntAmt, trgtLwdgCd, age});
+    setQueryObj({rentGrntAmt, trgtLwdgCd, age, weddStcd});
     setStts(1);
   }
 
@@ -79,6 +80,19 @@ export default function RentLoanMultiInfo() {
           decimalScale={0}
           variant="filled"
         />
+        <RadioGroup
+          row
+          name="weddStcd"
+          defaultValue={"1"}
+          onChange={(e) => {
+            setWeddStcd(e.target.value)
+          }}
+        >
+          <FormControlLabel sx={{ mr:2 }} value="1" control={<Radio />} label="미혼" />
+          <FormControlLabel sx={{ mr:2 }} value="2" control={<Radio />} label="기혼" />
+          <FormControlLabel sx={{ mr:2 }} value="3" control={<Radio />} label="신혼" />
+          <FormControlLabel sx={{ mr:2 }} value="4" control={<Radio />} label="결혼예정" />
+        </RadioGroup>
  
       </Paper>
       <div className="m-8 lg:mx-20">

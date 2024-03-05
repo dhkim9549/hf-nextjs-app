@@ -28,7 +28,7 @@ export async function getRcmdProdData(queryObj) {
 
 }
 
-export async function getRcmdData({rentGrntAmt, trgtLwdgCd, age}) {
+export async function getRcmdData(queryObj) {
 
   console.log("getRcmdData() start...");
 
@@ -41,10 +41,11 @@ export async function getRcmdData({rentGrntAmt, trgtLwdgCd, age}) {
 
   let res = await fetch("https://apis.data.go.kr/B551408/jnse-rcmd-info/jnse-rcmd-list"
     + apiStr
-    + "&rentGrntAmt=" + rentGrntAmt
-    + "&trgtLwdgCd=" + trgtLwdgCd
-    + "&age=" + age
-    + "&weddStcd=1&myIncmAmt=0&myTotDebtAmt=0&ownHsCnt=0&grntPrmeActnDvcdCont=",
+    + "&rentGrntAmt=" + queryObj.rentGrntAmt
+    + "&trgtLwdgCd=" + queryObj.trgtLwdgCd
+    + "&age=" + queryObj.age
+    + "&weddStcd=" + queryObj.weddStcd
+    + "&myIncmAmt=0&myTotDebtAmt=0&ownHsCnt=0&grntPrmeActnDvcdCont=",
     { next: { revalidate: 600 } }
   );
 

@@ -17,6 +17,7 @@ import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import FormLabel from '@mui/material/FormLabel';
 
 import { NumericFormat } from 'react-number-format';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -80,19 +81,22 @@ export default function RentLoanMultiInfo() {
           decimalScale={0}
           variant="filled"
         />
-        <RadioGroup
-          row
-          name="weddStcd"
-          defaultValue={"1"}
-          onChange={(e) => {
-            setWeddStcd(e.target.value)
-          }}
-        >
-          <FormControlLabel sx={{ mr:2 }} value="1" control={<Radio />} label="미혼" />
-          <FormControlLabel sx={{ mr:2 }} value="2" control={<Radio />} label="기혼" />
-          <FormControlLabel sx={{ mr:2 }} value="3" control={<Radio />} label="신혼" />
-          <FormControlLabel sx={{ mr:2 }} value="4" control={<Radio />} label="결혼예정" />
-        </RadioGroup>
+        <FormControl>
+          <FormLabel id="demo-radio-buttons-group-label">결혼구분</FormLabel>
+            <RadioGroup
+              row
+              name="weddStcd"
+              defaultValue={"1"}
+              onChange={(e) => {
+                setWeddStcd(e.target.value)
+              }}
+            >
+              <FormControlLabel sx={{ mr:2 }} value="1" control={<Radio />} label="미혼" />
+              <FormControlLabel sx={{ mr:2 }} value="2" control={<Radio />} label="기혼" />
+              <FormControlLabel sx={{ mr:2 }} value="3" control={<Radio />} label="신혼" />
+              <FormControlLabel sx={{ mr:2 }} value="4" control={<Radio />} label="결혼예정" />
+            </RadioGroup>
+        </FormControl>
  
       </Paper>
       <div className="m-8 lg:mx-20">

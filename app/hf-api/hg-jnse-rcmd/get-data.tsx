@@ -45,7 +45,8 @@ export async function getRcmdData(queryObj) {
     + "&trgtLwdgCd=" + queryObj.trgtLwdgCd
     + "&age=" + queryObj.age
     + "&weddStcd=" + queryObj.weddStcd
-    + "&myIncmAmt=0&myTotDebtAmt=0&ownHsCnt=0&grntPrmeActnDvcdCont=",
+    + "&myIncmAmt=" + queryObj.myIncmAmt
+    + "&myTotDebtAmt=0&ownHsCnt=0&grntPrmeActnDvcdCont=",
     { next: { revalidate: 600 } }
   );
 

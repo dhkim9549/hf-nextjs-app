@@ -28,11 +28,12 @@ export default function RentLoanMultiInfo() {
   let [rentGrntAmt, setRentGrntAmt] = useState();
   let [trgtLwdgCd, setTrgtLwdgCd] = useState();
   let [age, setAge] = useState();
+  let [myIncmAmt, setMyIncmAmt] = useState();
   let [weddStcd, setWeddStcd] = useState();
   let [queryObj, setQueryObj] = useState();
 
   function setRcmdDataQuery() {
-    setQueryObj({rentGrntAmt, trgtLwdgCd, age, weddStcd});
+    setQueryObj({rentGrntAmt, trgtLwdgCd, age, weddStcd, myIncmAmt});
     setStts(1);
   }
 
@@ -97,6 +98,23 @@ export default function RentLoanMultiInfo() {
               <FormControlLabel sx={{ mr:2 }} value="4" control={<Radio />} label="결혼예정" />
             </RadioGroup>
         </FormControl>
+        <NumericFormat
+          label="연소득금액"
+          value={myIncmAmt}
+          customInput={TextField}
+          InputProps={{
+            endAdornment: <InputAdornment position="start">원</InputAdornment>,
+          }}
+          allowNegative={false}
+          thousandSeparator
+          onValueChange={({ value }) => setMyIncmAmt(Number(value))}
+          isAllowed={(values) => {
+            const { floatValue } = values;
+            return floatValue === undefined || floatValue < 1000000000;
+          }}
+          decimalScale={0}
+          variant="filled"
+        />
  
       </Paper>
       <div className="m-8 lg:mx-20">

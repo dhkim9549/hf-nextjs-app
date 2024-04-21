@@ -29,11 +29,12 @@ export default function RentLoanMultiInfo() {
   let [trgtLwdgCd, setTrgtLwdgCd] = useState();
   let [age, setAge] = useState();
   let [myIncmAmt, setMyIncmAmt] = useState();
+  let [myTotDebtAmt, setMyTotDebtAmt] = useState();
   let [weddStcd, setWeddStcd] = useState();
   let [queryObj, setQueryObj] = useState();
 
   function setRcmdDataQuery() {
-    setQueryObj({rentGrntAmt, trgtLwdgCd, age, weddStcd, myIncmAmt});
+    setQueryObj({rentGrntAmt, trgtLwdgCd, age, weddStcd, myIncmAmt, myTotDebtAmt});
     setStts(1);
   }
 
@@ -108,6 +109,23 @@ export default function RentLoanMultiInfo() {
           allowNegative={false}
           thousandSeparator
           onValueChange={({ value }) => setMyIncmAmt(Number(value))}
+          isAllowed={(values) => {
+            const { floatValue } = values;
+            return floatValue === undefined || floatValue < 1000000000;
+          }}
+          decimalScale={0}
+          variant="filled"
+        />
+        <NumericFormat
+          label="총부채금액"
+          value={myTotDebtAmt}
+          customInput={TextField}
+          InputProps={{
+            endAdornment: <InputAdornment position="start">원</InputAdornment>,
+          }}
+          allowNegative={false}
+          thousandSeparator
+          onValueChange={({ value }) => setMyTotDebtAmt(Number(value))}
           isAllowed={(values) => {
             const { floatValue } = values;
             return floatValue === undefined || floatValue < 1000000000;

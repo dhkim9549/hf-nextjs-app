@@ -28,13 +28,15 @@ export default function RentLoanMultiInfo() {
   let [rentGrntAmt, setRentGrntAmt] = useState();
   let [trgtLwdgCd, setTrgtLwdgCd] = useState();
   let [age, setAge] = useState();
+  let [weddStcd, setWeddStcd] = useState();
   let [myIncmAmt, setMyIncmAmt] = useState();
   let [myTotDebtAmt, setMyTotDebtAmt] = useState();
-  let [weddStcd, setWeddStcd] = useState();
+  let [ownHsCnt, setOwnHsCnt] = useState();
+  let [grntPrmeActnDvcdCont01Yn, setGrntPrmeActnDvcdCont01Yn] = useState();
   let [queryObj, setQueryObj] = useState();
 
   function setRcmdDataQuery() {
-    setQueryObj({rentGrntAmt, trgtLwdgCd, age, weddStcd, myIncmAmt, myTotDebtAmt});
+    setQueryObj({rentGrntAmt, trgtLwdgCd, age, weddStcd, myIncmAmt, myTotDebtAmt, ownHsCnt, grntPrmeActnDvcdCont01Yn});
     setStts(1);
   }
 
@@ -133,6 +135,33 @@ export default function RentLoanMultiInfo() {
           decimalScale={0}
           variant="filled"
         />
+         <NumericFormat
+          label="보유주택수"
+          value={ownHsCnt}
+          customInput={TextField}
+          allowNegative={false}
+          onValueChange={({ value }) => setOwnHsCnt(Number(value))}
+          isAllowed={(values) => {
+            const { floatValue } = values;
+            return floatValue === undefined || floatValue < 1000;
+          }}
+          decimalScale={0}
+          variant="filled"
+        />
+         <FormControl>
+          <FormLabel id="demo-radio-buttons-group-label">2자녀이상</FormLabel>
+            <RadioGroup
+              row
+              name="grntPrmeActnDvcdCont01Yn"
+              defaultValue={"N"}
+              onChange={(e) => {
+                setGrntPrmeActnDvcdCont01Yn(e.target.value)
+              }}
+            >
+              <FormControlLabel sx={{ mr:2 }} value="Y" control={<Radio />} label="예" />
+              <FormControlLabel sx={{ mr:2 }} value="N" control={<Radio />} label="아니오" />
+            </RadioGroup>
+        </FormControl>
  
       </Paper>
       <div className="m-8 lg:mx-20">

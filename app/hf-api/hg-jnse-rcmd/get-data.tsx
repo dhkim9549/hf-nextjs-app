@@ -49,7 +49,8 @@ export async function getRcmdData(queryObj) {
     + "&weddStcd=" + queryObj.weddStcd
     + "&myIncmAmt=" + (queryObj.myIncmAmt || "0")
     + "&myTotDebtAmt=" + (queryObj.myTotDebtAmt || "0")
-    + "&ownHsCnt=0&grntPrmeActnDvcdCont=",
+    + "&ownHsCnt=" + (queryObj.ownHsCnt || "0")
+    + "&grntPrmeActnDvcdCont=" + (queryObj.grntPrmeActnDvcdCont01Yn == "Y" ? "01" : ""),
     { next: { revalidate: 600 } }
   );
 

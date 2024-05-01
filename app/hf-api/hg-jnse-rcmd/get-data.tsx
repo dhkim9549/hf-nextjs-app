@@ -32,6 +32,8 @@ export async function getRcmdData(queryObj) {
 
   console.log("getRcmdData() start...");
 
+  console.log("queryObj = " + JSON.stringify(queryObj));
+
   let apiStr = ""
     + "?serviceKey=PW2VvwTvkcs%2FWMVLduXzeRL0BPjOYH%2B0wMnsQiyy5UgcrukEjAurATJUNkeA7T%2Bj47s3GAmLzHduip%2BfbxESlQ%3D%3D"
     + "&pageNo=1"
@@ -45,8 +47,8 @@ export async function getRcmdData(queryObj) {
     + "&trgtLwdgCd=" + queryObj.trgtLwdgCd
     + "&age=" + queryObj.age
     + "&weddStcd=" + queryObj.weddStcd
-    + "&myIncmAmt=" + queryObj.myIncmAmt
-    + "&myTotDebtAmt=" + queryObj.myTotDebtAmt
+    + "&myIncmAmt=" + (queryObj.myIncmAmt || "0")
+    + "&myTotDebtAmt=" + (queryObj.myTotDebtAmt || "0")
     + "&ownHsCnt=0&grntPrmeActnDvcdCont=",
     { next: { revalidate: 600 } }
   );

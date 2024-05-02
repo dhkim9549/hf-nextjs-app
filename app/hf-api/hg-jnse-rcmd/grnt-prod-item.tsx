@@ -1,5 +1,8 @@
 import Paper from '@mui/material/Paper';
 
+import BankNmList from './bank-nm-list.json';
+import LwdgCdList from './lwdg-cd-list.json';
+
 export default function RcmdProdItem({prodObj, prodInfo, maxRentAmtList}) {
 
   const reqTrgtListItems = prodInfo?.reqTrgtCont.split('|').map(x =>
@@ -10,13 +13,13 @@ export default function RcmdProdItem({prodObj, prodInfo, maxRentAmtList}) {
 
   const trtBankListItems = prodInfo?.trtBankCont.split('|').map(x =>
     <li key={x}>
-      {x}
+      {x} : {BankNmList[x]}
     </li>
   );
 
   const maxRentAmtItems = maxRentAmtList?.map(x =>
     <li key={x.trgtLwdgCd}>
-      {x.trgtLwdgCd}: {x.maxRentGrntAmt.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
+      {LwdgCdList[x.trgtLwdgCd]}: {x.maxRentGrntAmt.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
     </li>
   );
 

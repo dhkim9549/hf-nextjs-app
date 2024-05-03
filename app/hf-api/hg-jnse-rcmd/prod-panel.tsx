@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
+
 import { getRcmdProdData } from './get-data';
 import GrntProdItem from './grnt-prod-item';
+import MySkel from './MySkel';
 
 export default function ProdPanel({queryObj}) {
 
@@ -33,7 +35,7 @@ export default function ProdPanel({queryObj}) {
            prodInfo={prodInfoObj[x.grntDvcd]}
            maxRentAmtList={maxRentAmtObj[x.grntDvcd]}
          />
-       ) : "loading..."}
+       ) : <MySkel/>}
       </div>
     </div>
   )

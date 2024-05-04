@@ -15,6 +15,7 @@ import Card from '@mui/material/Card';
 
 import DataGrid from './m-table';
 import BChart from './b-chart';
+import MySkel from './MySkel';
 import { getLoanRateData } from './get-data';
 
 export default function RentLoanMultiInfo({
@@ -103,7 +104,7 @@ export default function RentLoanMultiInfo({
                </div>
              </div>
           </>
-          : "loading..."
+          : <MySkel/>
          }
       </div>
     </div>

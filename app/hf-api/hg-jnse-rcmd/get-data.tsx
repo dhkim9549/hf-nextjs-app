@@ -1,5 +1,7 @@
 'use server'
 
+import { revalidateTag } from 'next/cache'
+
 export async function getRcmdProdData(queryObj) {
 
   console.log("getRcmdProdData() start...");
@@ -76,10 +78,15 @@ export async function getProdInfo(grntDvcd) {
     + apiStr
     + "&grntDvcd=" + grntDvcd
     + "",
-    { next: { revalidate: 600 } }
+    { next: { revalidate: 600, tags: ['collection'] } }
   );
 
-  let prodInfoJson = await res.json();
+  let prodInfoJson = null;
+  try {
+    prodInfoJson = await res.json();
+  } catch(e) {
+    revalidateTag('collection');
+  }
 
   console.log(`getProdInfo(${grntDvcd}) end...`);
 

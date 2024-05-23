@@ -78,14 +78,15 @@ export async function getProdInfo(grntDvcd) {
     + apiStr
     + "&grntDvcd=" + grntDvcd
     + "",
-    { next: { revalidate: 600, tags: ['collection'] } }
+    { next: { revalidate: 3600, tags: ['prod-info'] } }
   );
 
   let prodInfoJson = null;
   try {
     prodInfoJson = await res.json();
   } catch(e) {
-    revalidateTag('collection');
+    console.log("revalidateTag(prod-info)");
+    revalidateTag('prod-info');
   }
 
   console.log(`getProdInfo(${grntDvcd}) end...`);

@@ -53,10 +53,16 @@ export async function getRcmdData(queryObj) {
     + "&myTotDebtAmt=" + (queryObj.myTotDebtAmt || "0")
     + "&ownHsCnt=" + (queryObj.ownHsCnt || "0")
     + "&grntPrmeActnDvcdCont=" + (queryObj.grntPrmeActnDvcdCont01Yn == "Y" ? "01" : ""),
-    { next: { revalidate: 600 } }
+    { next: { revalidate: 3600, tags: ['rcmd-data'] } }
   );
 
-  let rentJson = await res.json();
+  let rentJson = null;
+  try {
+    rentJson = await res.json();
+  } catch(e) {
+    console.log("revalidateTag(rcmd-data)");
+    revalidateTag('rcmd-data');
+  }
 
   console.log("getRcmdData() end...");
 
@@ -109,10 +115,16 @@ export async function getMaxRentAmtList(grntDvcd) {
     + apiStr
     + "&grntDvcd=" + grntDvcd
     + "",
-    { next: { revalidate: 600 } }
+    { next: { revalidate: 3600, tags: ['max-rent-amt-list'] } }
   );
 
-  let prodInfoJson = await res.json();
+  let prodInfoJson = null;
+  try {
+    prodInfoJson = await res.json();
+  } catch(e) {
+    console.log("revalidateTag(max-rent-amt-list)");
+    revalidateTag('max-rent-amt-list');
+  }
 
   console.log("getMaxRentAmtList() end...");
 

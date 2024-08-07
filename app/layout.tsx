@@ -15,7 +15,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <div className="bg-slate-800 text-slate-100 text-center p-1">
-          FAIL FAST 
+          USE IT OR LOSE IT 
         </div>
         {children}
       </body>

@@ -9,6 +9,7 @@ export default function ProdPanel({queryObj}) {
   let [rcmdItems, setRcmdItems] = useState();
   let [prodInfoObj, setProdInfoMap] = useState();
   let [maxRentAmtObj, setMaxRentAmtMap] = useState();
+  let [loanRatObj, setLoanRatObj] = useState();
 
   useEffect(() => {
     setRcmdItems();
@@ -17,6 +18,7 @@ export default function ProdPanel({queryObj}) {
       setRcmdItems(x.rcmdItems);
       setProdInfoMap(x.prodInfoObj);
       setMaxRentAmtMap(x.maxRentAmtObj);
+      setLoanRatObj(x.loanRatObj);
     });
   }, [queryObj]);
 
@@ -34,6 +36,7 @@ export default function ProdPanel({queryObj}) {
            prodObj={x}
            prodInfo={prodInfoObj[x.grntDvcd]}
            maxRentAmtList={maxRentAmtObj[x.grntDvcd]}
+           loanRat={loanRatObj[x.grntDvcd]}
          />
        ) : <MySkel/>}
       </div>

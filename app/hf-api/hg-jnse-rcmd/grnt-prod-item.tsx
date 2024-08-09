@@ -3,7 +3,7 @@ import Paper from '@mui/material/Paper';
 import BankNmList from './bank-nm-list.json';
 import LwdgCdList from './lwdg-cd-list.json';
 
-export default function RcmdProdItem({prodObj, prodInfo, maxRentAmtList}) {
+export default function RcmdProdItem({prodObj, prodInfo, maxRentAmtList, loanRat}) {
 
   const reqTrgtListItems = prodInfo?.reqTrgtCont.split('|').map(x =>
     <li key={x}>
@@ -45,6 +45,7 @@ export default function RcmdProdItem({prodObj, prodInfo, maxRentAmtList}) {
         <ul className="list-disc text-sm px-6">{trtBankListItems}</ul>
       <div className="text-slate-900">임차보증금액 대비 최대대출한도 비율: {prodInfo?.rentGrntMaxLoanLmtRate}%</div>
       <div className="text-slate-900">최대대출한도: {prodInfo?.maxLoanLmtAmt.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</div>
+      {loanRat ? <div className="text-slate-900">전월 보증부대출 적용금리: {loanRat}%</div> : ""}
       <div className="text-slate-900">지역별 최대임차보증금액</div>
         <ul className="list-disc text-sm px-6">{maxRentAmtItems}</ul>
     </Paper>

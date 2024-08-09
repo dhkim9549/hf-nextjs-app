@@ -10,18 +10,34 @@ export async function getRcmdProdData(queryObj) {
   let rcmdItems = await getRcmdData(queryObj);
 
   let prodInfoObj = {}; 
-  await Promise.all(rcmdItems.map(async (x) => {
-    const rsps = await getProdInfo(x.grntDvcd);
-    prodInfoObj[x.grntDvcd] = rsps;
+  let p1 = Promise.all(rcmdItems.map((x) => {
+    getProdInfo(x.grntDvcd).then((rsps) => {
+      prodInfoObj[x.grntDvcd] = rsps;
+    });
   }));
 
   let maxRentAmtObj = {}; 
-  await Promise.all(rcmdItems.map(async (x) => {
-    const rsps = await getMaxRentAmtList(x.grntDvcd);
-    maxRentAmtObj[x.grntDvcd] = rsps;
+  let p2 = Promise.all(rcmdItems.map((x) => {
+    getMaxRentAmtList(x.grntDvcd).then((rsps) => {
+      maxRentAmtObj[x.grntDvcd] = rsps;
+    });
   }));
 
-  let x = {rcmdItems, prodInfoObj, maxRentAmtObj};
+  let date = new Date();
+  date = new Date(date.setDate(1));
+  date = new Date(date.setMonth(date.getMonth() - 1));
+  let loanYm = ("" + date.getFullYear()) + ("" + (date.getMonth() + 1)).padStart(2, '0');
+
+  let loanRatObj = {}; 
+  let p3 = getJnseGrtdLoanRatList(loanYm).then((items) => {
+    items.map((x) => {
+      loanRatObj[x.grntDvcd] = x.grtdLoanAvgRat;
+    });
+  });
+
+  await Promise.all([p1, p2, p3]);
+
+  let x = {rcmdItems, prodInfoObj, maxRentAmtObj, loanRatObj};
   console.log(">>> x = " + JSON.stringify(x));
 
   console.log("getRcmdProdData() end...");
@@ -129,4 +145,35 @@ export async function getMaxRentAmtList(grntDvcd) {
   console.log("getMaxRentAmtList() end...");
 
   return prodInfoJson.body.items;
+}
+
+export async function getJnseGrtdLoanRatList(loanYm) {
+
+  console.log("getJnseGrtdLoanRatList() start...");
+
+  let apiStr = ""
+    + "?serviceKey=PW2VvwTvkcs%2FWMVLduXzeRL0BPjOYH%2B0wMnsQiyy5UgcrukEjAurATJUNkeA7T%2Bj47s3GAmLzHduip%2BfbxESlQ%3D%3D"
+    + "&pageNo=1"
+    + "&numOfRows=100"
+    + "&dataType=JSON"
+    ;
+
+  let res = await fetch("https://apis.data.go.kr/B551408/jnse-rcmd-info/jnse-grtd-loan-rat-list"
+    + apiStr
+    + "&loanYm=" + loanYm
+    + "",
+    { next: { revalidate: 3600, tags: ['jnse-grtd-loan-rat-list'] } }
+  );
+
+  let ratInfoJson = null;
+  try {
+    ratInfoJson = await res.json();
+  } catch(e) {
+    console.log("revalidateTag(jnse-grtd-loan-rat-list)");
+    revalidateTag('jnse-grtd-loan-rat-list');
+  }
+
+  console.log("getJnseGrtdLoanRatList() end...");
+
+  return ratInfoJson.body.items;
 }

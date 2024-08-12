@@ -10,15 +10,17 @@ export async function getRcmdProdData(queryObj) {
   let rcmdItems = await getRcmdData(queryObj);
 
   let prodInfoObj = {}; 
-  await Promise.all(rcmdItems.map(async (x) => {
-    const rsps = await getProdInfo(x.grntDvcd);
-    prodInfoObj[x.grntDvcd] = rsps;
+  let p1 = Promise.all(rcmdItems.map(async (x) => {
+    await getProdInfo(x.grntDvcd).then((rsps) => {
+      prodInfoObj[x.grntDvcd] = rsps;
+    });
   }));
 
   let maxRentAmtObj = {}; 
-  await Promise.all(rcmdItems.map(async (x) => {
-    const rsps = await getMaxRentAmtList(x.grntDvcd);
-    maxRentAmtObj[x.grntDvcd] = rsps;
+  let p2 = Promise.all(rcmdItems.map(async (x) => {
+    await getMaxRentAmtList(x.grntDvcd).then((rsps) => {
+      maxRentAmtObj[x.grntDvcd] = rsps;
+    });
   }));
 
   let date = new Date();
@@ -32,7 +34,8 @@ export async function getRcmdProdData(queryObj) {
       loanRatObj[x.grntDvcd] = x.grtdLoanAvgRat;
     });
   });
-  await p3;
+
+  await Promise.all([p1, p2, p3]);
 
   let x = {rcmdItems, prodInfoObj, maxRentAmtObj, loanRatObj};
   console.log(">>> x = " + JSON.stringify(x));
@@ -115,7 +118,7 @@ export async function getProdInfo(grntDvcd) {
 
 export async function getMaxRentAmtList(grntDvcd) {
 
-  console.log("getMaxRentAmtList() start...");
+  console.log(`getMaxRentAmtList(${grntDvcd}) start...`);
 
   let apiStr = ""
     + "?serviceKey=PW2VvwTvkcs%2FWMVLduXzeRL0BPjOYH%2B0wMnsQiyy5UgcrukEjAurATJUNkeA7T%2Bj47s3GAmLzHduip%2BfbxESlQ%3D%3D"
@@ -139,7 +142,7 @@ export async function getMaxRentAmtList(grntDvcd) {
     revalidateTag('max-rent-amt-list');
   }
 
-  console.log("getMaxRentAmtList() end...");
+  console.log(`getMaxRentAmtList(${grntDvcd}) end...`);
 
   return prodInfoJson.body.items;
 }

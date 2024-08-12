@@ -69,7 +69,7 @@ export async function getRcmdData(queryObj) {
     + "&myTotDebtAmt=" + (queryObj.myTotDebtAmt || "0")
     + "&ownHsCnt=" + (queryObj.ownHsCnt || "0")
     + "&grntPrmeActnDvcdCont=" + (queryObj.grntPrmeActnDvcdCont01Yn == "Y" ? "01" : ""),
-    { next: { revalidate: 36, tags: ['rcmd-data'] } }
+    { next: { revalidate: 3600, tags: ['rcmd-data'] } }
   );
 
   let rentJson = null;
@@ -100,7 +100,7 @@ export async function getProdInfo(grntDvcd) {
     + apiStr
     + "&grntDvcd=" + grntDvcd
     + "",
-    { next: { revalidate: 36, tags: ['prod-info'] } }
+    { next: { revalidate: 3600, tags: ['prod-info'] } }
   );
 
   let prodInfoJson = null;
@@ -131,7 +131,7 @@ export async function getMaxRentAmtList(grntDvcd) {
     + apiStr
     + "&grntDvcd=" + grntDvcd
     + "",
-    { next: { revalidate: 36, tags: ['max-rent-amt-list'] } }
+    { next: { revalidate: 3600, tags: ['max-rent-amt-list'] } }
   );
 
   let prodInfoJson = null;
@@ -162,7 +162,7 @@ export async function getJnseGrtdLoanRatList(loanYm) {
     + apiStr
     + "&loanYm=" + loanYm
     + "",
-    { next: { revalidate: 36, tags: ['jnse-grtd-loan-rat-list'] } }
+    { next: { revalidate: 3600, tags: ['jnse-grtd-loan-rat-list'] } }
   );
 
   let ratInfoJson = null;

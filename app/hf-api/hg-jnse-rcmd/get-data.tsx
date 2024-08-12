@@ -15,6 +15,7 @@ export async function getRcmdProdData(queryObj) {
       prodInfoObj[x.grntDvcd] = rsps;
     });
   }));
+  await p1;
 
   let maxRentAmtObj = {}; 
   let p2 = Promise.all(rcmdItems.map((x) => {
@@ -22,6 +23,7 @@ export async function getRcmdProdData(queryObj) {
       maxRentAmtObj[x.grntDvcd] = rsps;
     });
   }));
+  await p2;
 
   let date = new Date();
   date = new Date(date.setDate(1));
@@ -34,9 +36,6 @@ export async function getRcmdProdData(queryObj) {
       loanRatObj[x.grntDvcd] = x.grtdLoanAvgRat;
     });
   });
-
-  await p1;
-  await p2;
   await p3;
 
   let x = {rcmdItems, prodInfoObj, maxRentAmtObj, loanRatObj};

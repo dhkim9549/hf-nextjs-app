@@ -10,20 +10,16 @@ export async function getRcmdProdData(queryObj) {
   let rcmdItems = await getRcmdData(queryObj);
 
   let prodInfoObj = {}; 
-  let p1 = Promise.all(rcmdItems.map((x) => {
-    getProdInfo(x.grntDvcd).then((rsps) => {
-      prodInfoObj[x.grntDvcd] = rsps;
-    });
+  await Promise.all(rcmdItems.map(async (x) => {
+    const rsps = await getProdInfo(x.grntDvcd);
+    prodInfoObj[x.grntDvcd] = rsps;
   }));
-  await p1;
 
   let maxRentAmtObj = {}; 
-  let p2 = Promise.all(rcmdItems.map((x) => {
-    getMaxRentAmtList(x.grntDvcd).then((rsps) => {
-      maxRentAmtObj[x.grntDvcd] = rsps;
-    });
+  await Promise.all(rcmdItems.map(async (x) => {
+    const rsps = await getMaxRentAmtList(x.grntDvcd);
+    maxRentAmtObj[x.grntDvcd] = rsps;
   }));
-  await p2;
 
   let date = new Date();
   date = new Date(date.setDate(1));

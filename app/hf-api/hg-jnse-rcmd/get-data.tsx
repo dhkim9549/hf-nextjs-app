@@ -35,7 +35,9 @@ export async function getRcmdProdData(queryObj) {
     });
   });
 
-  await Promise.all([p1, p2, p3]);
+  await p1;
+  await p2;
+  await p3;
 
   let x = {rcmdItems, prodInfoObj, maxRentAmtObj, loanRatObj};
   console.log(">>> x = " + JSON.stringify(x));

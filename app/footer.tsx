@@ -97,7 +97,7 @@ export default function Footer() {
               <a href="https://naver.github.io/billboard.js/" className="text-gray-600">billboard.js</a>
             </p>
             <p>
-              <a href="https://www.digitalocean.com/" className="text-gray-600">DigitalOcean SGP</a>
+              <a href="https://www.digitalocean.com/" className="text-gray-600">DigitalOcean SFO</a>
             </p>
           </div>
           <div className="">

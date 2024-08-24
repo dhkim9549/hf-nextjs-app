@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { getRtnData } from './get-data';
 import ProdItem from './prod-item';
+import Skel from './skel';
 
 export default function ProdPanel({queryObj}) {
 
@@ -23,9 +24,12 @@ export default function ProdPanel({queryObj}) {
         </div>
       }
       <div className="m-4 flex flex-wrap gap-3">
-        {rtnItems ? rtnItems.map(x =>
-          <ProdItem prodObj={x} />
-        ) : "no data"}
+        {rtnItems ?
+          rtnItems.map(x =>
+            <ProdItem prodObj={x} />
+          )
+	  : <Skel />
+	}
       </div>
     </div>
   )

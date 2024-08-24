@@ -11,13 +11,11 @@ import ProdPanel from './prod-panel';
 
 export default function ExpressTest() {
 
-  let [stts, setStts] = useState();
   let [i, setI] = useState();
   let [queryObj, setQueryObj] = useState();
 
   function setQuery() {
     setQueryObj({i});
-    setStts(1);
   }
 
   return (
@@ -45,7 +43,7 @@ export default function ExpressTest() {
       <div className="m-8 lg:mx-20">
         <Button variant="contained" size="large" onClick={setQuery}>조회</Button>
       </div>
-      {stts ? <ProdPanel queryObj={queryObj} /> : ""}
+      {queryObj && <ProdPanel queryObj={queryObj} />}
     </div>
   )
 }

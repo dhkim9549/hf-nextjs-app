@@ -5,7 +5,9 @@ export async function getRtnData(queryObj) {
   console.log("getRtnData() start...");
   console.log("queryObj = " + JSON.stringify(queryObj));
 
-  let res = await fetch("https://seal-app-a32dz.ondigitalocean.app/api/get-apt-info?"
+  const API_URL = process.env.API_SERVER_URL;
+
+  let res = await fetch(API_URL + "/api/get-apt-info?"
     + "&aptNm=" + queryObj.aptNm
   );
 

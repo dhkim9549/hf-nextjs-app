@@ -26,7 +26,7 @@ export default function ProdPanel({queryObj}) {
       <div className="m-4 flex flex-wrap gap-3">
         {rtnItems ?
           rtnItems.map(x =>
-            <ProdItem prodObj={x} />
+            <ProdItem key={Math.random()} prodObj={x} />
           )
 	  : <Skel />
 	}

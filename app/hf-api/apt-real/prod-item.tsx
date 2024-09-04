@@ -1,9 +1,6 @@
-import { useContext } from 'react';
-import { AptContext } from './apt-context';
-
 import Paper from '@mui/material/Paper';
 
-export default function ProdItem({prodObj}) {
+export default function ProdItem({prodObj, addAptList}) {
 
   return(
     <Paper className="w-full lg:w-96 bg-white p-4 flex flex-col gap-2">
@@ -13,7 +10,7 @@ export default function ProdItem({prodObj}) {
       <div className="mt-2 flex flex-wrap gap-2">
         {prodObj.areas &&
           prodObj.areas.map(x =>
-            <AreaItem key={x} area={x} />
+            <AreaItem key={x} area={x} addAptList={addAptList} />
           )
         }
       </div>
@@ -21,9 +18,7 @@ export default function ProdItem({prodObj}) {
   )
 }
 
-function AreaItem({area}) {
-
-  const addAptList = useContext(AptContext);
+function AreaItem({area, addAptList}) {
 
   return(
     <Paper className="bg-amber-300 p-1 text-sm" onClick={() => {

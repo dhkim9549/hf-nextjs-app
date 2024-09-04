@@ -22,12 +22,13 @@ export default function ExpressTest() {
 
   function addAptList(x) {
     console.log('addAptList() start...');
-    aptList.push(x);
-    setAptList(aptList);
+    let list = aptList.slice();
+    list.push(x);
+    setAptList(list);
   }
 
   return (
-    <AptContext.Provider value={addAptList}>
+    <div>
       <div>
         <div className="text-center my-10 py-10 lg:text-left lg:m-10 lg:p-10">
           <blockquote className="text-2xl font-bold italic text-slate-900">
@@ -50,11 +51,11 @@ export default function ExpressTest() {
             <Button variant="contained" size="large" onClick={setQuery}>조회</Button>
           </div>
         </Paper>
-       {queryObj && <ProdPanel queryObj={queryObj} />}
+       {queryObj && <ProdPanel queryObj={queryObj} addAptList={addAptList} />}
       </div>
       <div className="bg-amber-100">
         dddd
       </div>
-    </AptContext.Provider>
+    </div>
   )
 }

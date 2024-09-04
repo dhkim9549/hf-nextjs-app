@@ -4,7 +4,7 @@ import { getRtnData } from './get-data';
 import ProdItem from './prod-item';
 import Skel from './skel';
 
-export default function ProdPanel({queryObj}) {
+export default function ProdPanel({queryObj, addAptList}) {
 
   let [rtnItems, setRtnItems] = useState();
 
@@ -26,7 +26,7 @@ export default function ProdPanel({queryObj}) {
       <div className="m-4 flex flex-wrap gap-3">
         {rtnItems ?
           rtnItems.map(x =>
-            <ProdItem key={Math.random()} prodObj={x} />
+            <ProdItem key={Math.random()} prodObj={x} addAptList={addAptList}  />
           )
 	  : <Skel />
 	}

@@ -11,7 +11,6 @@ export default function ProdPanel({queryObj, addAptList}) {
   useEffect(() => {
     setRtnItems();
     getRtnData(queryObj).then((x) => {
-      console.log("x = " + JSON.stringify(x));
       setRtnItems(x);
     });
   }, [queryObj]);

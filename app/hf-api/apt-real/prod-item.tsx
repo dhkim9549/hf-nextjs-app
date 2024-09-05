@@ -10,7 +10,7 @@ export default function ProdItem({prodObj, addAptList}) {
       <div className="mt-2 flex flex-wrap gap-2">
         {prodObj.areas &&
           prodObj.areas.map(x =>
-            <AreaItem key={x} area={x} addAptList={addAptList} />
+            <AreaItem key={x} area={x} sggu={prodObj.sggu} aptNm={prodObj.aptNm} addAptList={addAptList} />
           )
         }
       </div>
@@ -18,11 +18,11 @@ export default function ProdItem({prodObj, addAptList}) {
   )
 }
 
-function AreaItem({area, addAptList}) {
+function AreaItem({area, sggu, aptNm, addAptList}) {
 
   return(
     <Paper className="bg-amber-300 p-1 text-sm" onClick={() => {
-      addAptList(area);
+      addAptList({sggu, aptNm, area});
     }}>
       {area}
     </Paper>

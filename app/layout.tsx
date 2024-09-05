@@ -13,11 +13,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        <div className="bg-slate-800 text-slate-100 text-center p-1">
+      <body className="relative">
+        <div className="z-50 fixed top-0 w-full bg-slate-800 text-slate-100 text-center p-1">
           USE IT OR LOSE IT 
         </div>
-        {children}
+	<div className="mt-8">
+          {children}
+	</div>
       </body>
     </html>
   )

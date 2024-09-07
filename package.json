@@ -17,7 +17,7 @@
     "@mui/material": "^5.15.3",
     "@mui/material-next": "^6.0.0-alpha.118",
     "@mui/x-data-grid": "^6.19.1",
-    "billboard.js": "^3.10.3",
+    "billboard.js": "^3.13.0",
     "next": "^14.2.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

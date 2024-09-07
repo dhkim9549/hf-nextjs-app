@@ -1,8 +1,8 @@
 'use server'
 
-export async function getRtnData(queryObj) {
+export async function getAptInfo(queryObj) {
 
-  console.log("getRtnData() start...");
+  console.log("getAptInfo() start...");
   console.log("queryObj = " + JSON.stringify(queryObj));
 
   const API_URL = process.env.API_SERVER_URL;
@@ -15,7 +15,29 @@ export async function getRtnData(queryObj) {
 
   console.log("resJson = " + JSON.stringify(resJson));
 
-  console.log("getRtnData() end...");
+  console.log("getAptInfo() end...");
+ 
+  return resJson;
+}
+
+export async function getAptTrd(queryObj) {
+
+  console.log("getAptTrd() start...");
+  console.log("queryObj = " + JSON.stringify(queryObj));
+
+  const API_URL = process.env.API_SERVER_URL;
+
+  let res = await fetch(API_URL + "/api/get-apt-trd?"
+    + "&sggu=" + queryObj.sggu
+    + "&aptNm=" + queryObj.aptNm
+    + "&area=" + queryObj.area
+  );
+
+  let resJson = await res.json();
+
+  console.log("resJson = " + JSON.stringify(resJson));
+
+  console.log("getAptTrd() end...");
  
   return resJson;
 }

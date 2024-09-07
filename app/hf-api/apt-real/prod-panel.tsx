@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { getRtnData } from './get-data';
+import { getAptInfo } from './get-data';
 import ProdItem from './prod-item';
 import Skel from './skel';
 
@@ -10,7 +10,7 @@ export default function ProdPanel({queryObj, addAptList}) {
 
   useEffect(() => {
     setRtnItems();
-    getRtnData(queryObj).then((x) => {
+    getAptInfo(queryObj).then((x) => {
       setRtnItems(x);
     });
   }, [queryObj]);

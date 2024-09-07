@@ -9,17 +9,28 @@ import BillboardJS, {IChart} from "@billboard.js/react";
 
 export default function AptChart({aptList}) {
 
+  const chartRef = useRef();
+
   // to get the instance, create ref and pass it to the component
   const chartComponent = useRef<IChart>();
   const options = {
     legend: {
-      position: "right"
+      position: "bottom"
     },
     data: {
       xs: {},
       columns: [
       ],
       type: scatter() // for ESM specify as: bar()
+    },
+    axis: {
+      x: {
+        type: "timeseries"
+      },
+      tick: {
+        format: "%Y",
+        values: ["2013-01-02", "2019-01-03"]
+      }
     }
   };
 
@@ -36,7 +47,7 @@ export default function AptChart({aptList}) {
       let xArr = [apt.aptNm + apt.area + '_x'];
       let yArr = [apt.aptNm + apt.area];
       apt.trd.forEach((trd) => {
-        xArr.push(Number(trd.ctrtYm));
+        xArr.push(trd.ctrtYm.substring(0, 4) + '-' + trd.ctrtYm.substring(4, 6) + '-01');
 	yArr.push(trd.prc);
       });
       chartData.columns.push(xArr);
@@ -52,7 +63,7 @@ export default function AptChart({aptList}) {
   }, [aptList]);
 
   return (
-    <div className="m-7 text-xs">
+    <div className="m-5">
       <BillboardJS bb={bb} options={options} ref={chartComponent} />
     </div>
   )

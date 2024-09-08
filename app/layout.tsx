@@ -17,7 +17,7 @@ export default function RootLayout({
         <div className="fixed top-0 z-50 w-full bg-slate-800 text-slate-100 text-center p-1">
           USE IT OR LOSE IT 
         </div>
-	<div className="mt-8">
+	<div className="">
           {children}
 	</div>
       </body>

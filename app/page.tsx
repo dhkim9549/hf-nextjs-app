@@ -27,7 +27,7 @@ function Item({title, cont, href}) {
 
 export default function Home() {
   return (
-    <>
+    <div className="mt-7">
       <Header/>
       <Title t1="HF" t2="Open" t3="API 온라인 전시관"/>
       <div className="w-full p-4 flex flex-col lg:flex-row lg:flex-wrap">
@@ -48,6 +48,6 @@ export default function Home() {
         />
       </div>
       <Footer/>
-    </>
+    </div>
   )
 }

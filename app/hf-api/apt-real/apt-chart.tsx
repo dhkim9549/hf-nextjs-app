@@ -4,43 +4,15 @@ import { useEffect, useState, useRef } from 'react';
 import bb, {scatter} from "billboard.js";
 import "billboard.js/dist/billboard.css";  // default css
 
-// import react wrapper
-import BillboardJS, {IChart} from "@billboard.js/react";
-
 export default function AptChart({aptList}) {
 
-  const chartRef = useRef();
-
-  // to get the instance, create ref and pass it to the component
-  const chartComponent = useRef<IChart>();
-  const options = {
-    legend: {
-      position: "bottom"
-    },
-    data: {
-      xs: {},
-      columns: [
-      ],
-      type: scatter() // for ESM specify as: bar()
-    },
-    axis: {
-      x: {
-        type: "timeseries"
-      },
-      tick: {
-        format: "%Y",
-        values: ["2013-01-02", "2019-01-03"]
-      }
-    }
-  };
-
   useEffect(() => {
-    // get the instance from ref
-    const chart = chartComponent.current?.instance;
 
     let chartData = {};
     chartData.xs = {};
     chartData.columns = [];
+    let xTickValues = [];
+    let maxY = 0;
 
     aptList.forEach((apt) => {
       chartData.xs[apt.aptNm + apt.area] = apt.aptNm + apt.area + '_x';
@@ -49,22 +21,49 @@ export default function AptChart({aptList}) {
       apt.trd.forEach((trd) => {
         xArr.push(trd.ctrtYm.substring(0, 4) + '-' + trd.ctrtYm.substring(4, 6) + '-01');
 	yArr.push(trd.prc);
+	if(maxY < trd.prc) {
+          maxY = 1.02 * trd.prc;
+	}
+	if(!xTickValues.includes(trd.ctrtYm.substring(0, 4) + '-01-01')) {
+          xTickValues.push(trd.ctrtYm.substring(0, 4) + '-01-01');
+	}
       });
       chartData.columns.push(xArr);
       chartData.columns.push(yArr);
-   });
+    });
 
-    console.log(JSON.stringify(chartData, null, 2));
-
-    // call APIs
-    if (chart) {
-      chart.load(chartData);
-    }
+    var chart2 = bb.generate({
+      data: {
+        xs: chartData.xs,
+        columns: chartData.columns,
+        type: scatter(), // for ESM specify as: line()
+      },
+      axis: {
+        x: {
+          type: "timeseries",
+          tick: {
+            format: "%Y-%m-%d",
+            values: xTickValues
+          }
+        },
+        y: {
+          label: {
+            text: "만원",
+            position: ""
+          },
+	  max: maxY 
+        }
+      },
+      size: {
+        height: 400
+      },
+      bindto: "#chart2"
+    });
   }, [aptList]);
 
   return (
-    <div className="m-5">
-      <BillboardJS bb={bb} options={options} ref={chartComponent} />
+    <div className="mt-20 mr-5">
+      <div id="chart2">xxx</div>
     </div>
   )
 }

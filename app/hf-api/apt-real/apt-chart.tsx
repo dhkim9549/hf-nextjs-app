@@ -57,8 +57,8 @@ export default function AptChart({aptList}) {
         }
       },
       size: {
-        height: 600,
-	width: 800
+        width: 680,
+        height: 358
       },
       bindto: "#chart2"
     });

@@ -51,18 +51,21 @@ export default function AptChart({aptList}) {
             text: "만원",
             position: ""
           },
-	  max: maxY 
+	  max: maxY,
+	  min: 0,
+	  padding: 0
         }
       },
       size: {
-        height: 400
+        height: 600,
+	width: 800
       },
       bindto: "#chart2"
     });
   }, [aptList]);
 
   return (
-    <div className="mt-20 mr-5">
+    <div className="mt-20 ml-5">
       <div id="chart2">xxx</div>
     </div>
   )

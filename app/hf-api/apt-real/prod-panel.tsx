@@ -22,7 +22,7 @@ export default function ProdPanel({queryObj, addAptList}) {
           {rtnItems.length} 건이 조회되었습니다.
         </div>
       }
-      <div className="m-4 flex flex-col gap-3">
+      <div className="flex flex-col gap-3">
         {rtnItems ?
           rtnItems.map(x =>
             <ProdItem key={Math.random()} prodObj={x} addAptList={addAptList}  />

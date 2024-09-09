@@ -18,11 +18,11 @@ export default function ProdPanel({queryObj, addAptList}) {
   return (
     <div>
       {rtnItems &&
-        <div className="m-4 p-4">
+        <div className="m-3 p-3">
           {rtnItems.length} 건이 조회되었습니다.
         </div>
       }
-      <div className="m-4 flex flex-wrap gap-3">
+      <div className="m-4 flex flex-col gap-3">
         {rtnItems ?
           rtnItems.map(x =>
             <ProdItem key={Math.random()} prodObj={x} addAptList={addAptList}  />

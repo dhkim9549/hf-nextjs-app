@@ -36,14 +36,14 @@ export default function AptReal() {
 
   return (
     <div className="flex flex-row">
-      <div className="flex flex-col items-center w-96 h-screen">
+      <div className="flex flex-col items-center w-[340px] h-screen">
         <div className="bg-slate-100 fixed top-8 z-10">
           <div className="text-center m-4 p-4">
             <blockquote className="text-2xl font-bold italic text-slate-900">
               APT-REAL
             </blockquote>
           </div>
-          <Paper className="m-2 p-2 flex flex-row justify-center gap-2">
+          <Paper className="p-2 w-80 flex flex-row justify-center gap-2">
             <TextField
               id="aptNm" label="aptNm" variant="filled"
               className=""

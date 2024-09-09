@@ -1,10 +1,11 @@
 import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
 
 export default function ProdItem({prodObj, addAptList}) {
 
   return(
-    <Paper className="w-full lg:w-96 bg-white p-4 flex flex-col gap-2">
-      <div className="text-slate-800 text-2xl mt-5 mb-2">{prodObj.aptNm}</div>
+    <Paper className="w-80 bg-white p-4 flex flex-col">
+      <div className="text-slate-800 text-xl mb-2">{prodObj.aptNm}</div>
       <div className="text-slate-900">{prodObj.sggu}</div>
       <div className="text-slate-900">{prodObj.prc}</div>
       <div className="mt-2 flex flex-wrap gap-2">
@@ -21,10 +22,10 @@ export default function ProdItem({prodObj, addAptList}) {
 function AreaItem({area, sggu, aptNm, addAptList}) {
 
   return(
-    <Paper className="bg-amber-300 p-1 text-sm" onClick={() => {
+    <Button variant="contained" className="min-w-0 h-5 px-1 py-3 bg-amber-300 text-black text-sm" onClick={() => {
       addAptList({sggu, aptNm, area});
     }}>
       {area}
-    </Paper>
+    </Button>
   )
 }

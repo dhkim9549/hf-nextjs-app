@@ -36,36 +36,34 @@ export default function AptReal() {
 
   return (
     <div className="flex flex-row">
-      <div className="w-96 flex-none">
-        <div className="flex flex-col h-screen">
-	  <div className="bg-slate-100 fixed top-8 z-10">
-            <div className="text-center text-left m-4 p-4">
-              <blockquote className="text-2xl font-bold italic text-slate-900">
-                Apt real
-              </blockquote>
-            </div>
-            <Paper className="m-4 p-4 flex flex-row lg:flex-row gap-3">
-              <TextField
-                id="aptNm" label="aptNm" variant="filled"
-                className=""
-                inputProps={{min: 0, maxLength:20 }}
-                onChange={(e) => {
-                  setAptNm(e.target.value);
-                }}
-	        onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    setQuery();
-	        }}}
-              />
-              <div className="flex flex-col justify-center">
-                <Button variant="contained" size="large" onClick={setQuery}>조회</Button>
-              </div>
-            </Paper>
-	  </div>
-	  <div className="mt-[200px] overflow-y-auto">
-           {queryObj && <ProdPanel queryObj={queryObj} addAptList={addAptList} />}
+      <div className="flex flex-col items-center w-96 h-screen">
+        <div className="bg-slate-100 fixed top-8 z-10">
+          <div className="text-center m-4 p-4">
+            <blockquote className="text-2xl font-bold italic text-slate-900">
+              APT-REAL
+            </blockquote>
           </div>
-	</div>
+          <Paper className="m-2 p-2 flex flex-row justify-center gap-2">
+            <TextField
+              id="aptNm" label="aptNm" variant="filled"
+              className=""
+              inputProps={{min: 0, maxLength:20 }}
+              onChange={(e) => {
+                setAptNm(e.target.value);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  setQuery();
+              }}}
+            />
+            <div className="flex flex-col justify-center">
+              <Button variant="contained" size="large" onClick={setQuery}>조회</Button>
+            </div>
+          </Paper>
+        </div>
+        <div className="mt-[200px] overflow-y-auto">
+         {queryObj && <ProdPanel queryObj={queryObj} addAptList={addAptList} />}
+        </div>
       </div>
       <div className="grow bg-amber-100">
         <AptChart aptList={aptList} />

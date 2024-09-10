@@ -35,8 +35,8 @@ export default function AptReal() {
   }
 
   return (
-    <div className="flex flex-row">
-      <div className="flex flex-col items-center w-[340px] h-screen">
+    <div className="flex flex-row justify-center bg-white">
+      <div className="flex flex-col items-center w-[340px] h-screen bg-slate-100">
         <div className="bg-slate-100 fixed top-8 z-10">
           <div className="text-center m-4 p-4">
             <blockquote className="text-2xl font-bold italic text-slate-900">
@@ -65,7 +65,7 @@ export default function AptReal() {
          {queryObj && <ProdPanel queryObj={queryObj} addAptList={addAptList} />}
         </div>
       </div>
-      <div className="grow bg-amber-100">
+      <div className="w-[750px] bg-orange-100">
         <AptChart aptList={aptList} />
       </div>
     </div>

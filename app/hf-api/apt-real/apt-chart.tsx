@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 
 // import billboard.js
-import bb, {scatter} from "billboard.js";
+import bb, {scatter, zoom} from "billboard.js";
 import "billboard.js/dist/billboard.css";  // default css
 
 export default function AptChart({aptList}) {
@@ -55,6 +55,18 @@ export default function AptChart({aptList}) {
 	  min: 0,
 	  padding: 0
         }
+      },
+      grid: {
+        x: {
+          show: false
+        },
+        y: {
+          show: true
+        }
+      },
+      zoom: {
+        enabled: zoom(),
+        type: "drag"
       },
       size: {
         width: 700,

@@ -19,7 +19,7 @@ export default function AptChart({aptList}) {
       let xArr = [apt.aptNm + apt.area + '_x'];
       let yArr = [apt.aptNm + apt.area];
       apt.trd.forEach((trd) => {
-        xArr.push(trd.ctrtYm.substring(0, 4) + '-' + trd.ctrtYm.substring(4, 6) + '-01');
+        xArr.push(trd.ctrtYm.substring(0, 4) + '-' + trd.ctrtYm.substring(4, 6) + '-' + trd.ctrtDy);
 	yArr.push(trd.prc);
 	if(maxY < trd.prc) {
           maxY = 1.02 * trd.prc;
@@ -44,7 +44,7 @@ export default function AptChart({aptList}) {
           tick: {
             format: "%Y-%m-%d",
             values: xTickValues
-          }
+          },
         },
         y: {
           label: {
@@ -57,8 +57,11 @@ export default function AptChart({aptList}) {
         }
       },
       size: {
-        width: 680,
-        height: 358
+        width: 700,
+        height: 400 
+      },
+      padding: {
+        left: 50
       },
       bindto: "#chart2"
     });

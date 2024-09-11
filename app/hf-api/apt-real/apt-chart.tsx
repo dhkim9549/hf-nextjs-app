@@ -1,10 +1,12 @@
 import { useEffect, useState, useRef } from 'react';
-
 // import billboard.js
 import bb, {scatter, zoom} from "billboard.js";
 import "billboard.js/dist/billboard.css";  // default css
 
-export default function AptChart({aptList}) {
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+
+export default function AptChart({aptList, clearAptList}) {
 
   useEffect(() => {
 
@@ -77,11 +79,21 @@ export default function AptChart({aptList}) {
       },
       bindto: "#chart2"
     });
+
   }, [aptList]);
 
   return (
-    <div className="mt-20 ml-5">
-      <div id="chart2">xxx</div>
+    <div className="mt-20 ml-5 flex flex-col">
+      <div id="chart2"></div>
+      <div className="px-10">
+        <IconButton aria-label="delete" size="large" disabled={aptList.length > 0 ? false : true}
+          onClick={() => {
+	    clearAptList();
+	  }}
+	>
+          <DeleteIcon fontSize="inherit" />
+        </IconButton>
+      </div>
     </div>
   )
 }

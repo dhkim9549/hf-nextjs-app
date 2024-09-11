@@ -5,6 +5,7 @@ import { useState, createContext, useEffect } from 'react';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import ApartmentIcon from '@mui/icons-material/Apartment';
 import { NumericFormat } from 'react-number-format';
 
 import ProdPanel from './prod-panel';
@@ -34,18 +35,23 @@ export default function AptReal() {
     }
   }
 
+  function clearAptList() {
+    setAptList([]);
+  }
+
   return (
     <div className="flex flex-row justify-center bg-white">
       <div className="flex flex-col items-center w-[340px] h-screen bg-slate-100">
         <div className="bg-slate-100 fixed top-8 z-10">
-          <div className="text-center m-4 p-4">
-            <blockquote className="text-2xl font-bold italic text-slate-900">
+          <div className="m-4 p-4 flex flex-row justify-center items-center">
+	    <ApartmentIcon />
+            <blockquote className="ml-2 text-2xl font-bold italic text-slate-900">
               APT-REAL
             </blockquote>
           </div>
           <Paper className="p-2 w-80 flex flex-row justify-center gap-2">
             <TextField
-              id="aptNm" label="aptNm" variant="filled"
+              id="aptNm" label="aptNm" variant="filled" size="small"
               className=""
               inputProps={{min: 0, maxLength:20 }}
               onChange={(e) => {
@@ -66,7 +72,7 @@ export default function AptReal() {
         </div>
       </div>
       <div className="w-[750px] bg-orange-100">
-        <AptChart aptList={aptList} />
+        <AptChart aptList={aptList} clearAptList={clearAptList} />
       </div>
     </div>
   )

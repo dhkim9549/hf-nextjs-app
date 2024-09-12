@@ -5,9 +5,9 @@ export default function ProdItem({prodObj, addAptList}) {
 
   return(
     <Paper className="w-72 bg-white mx-2 p-4 flex flex-col">
-      <div className="text-slate-800 text-xl mb-2">{prodObj.aptNm}</div>
+      <div className="text-slate-800 text-xl mb-1">{prodObj.aptNm}</div>
       <div className="text-slate-900">{prodObj.sggu}</div>
-      <div className="text-slate-900">{prodObj.prc}</div>
+      <div className="text-slate-900 text-sm">{prodObj.cnstYr}년 준공</div>
       <div className="mt-2 flex flex-wrap gap-2">
         {prodObj.areas &&
           prodObj.areas.map(x =>

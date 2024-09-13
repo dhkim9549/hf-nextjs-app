@@ -40,8 +40,8 @@ export default function AptReal() {
   }
 
   return (
-    <div className="flex flex-row justify-center bg-white">
-      <div className="flex flex-col items-center w-[340px] h-screen bg-slate-100">
+    <div className="flex flex-col lg:flex-row lg:justify-center bg-white">
+      <div className="flex flex-col items-center w-full lg:w-[340px] pb-8 lg:h-screen bg-slate-100">
         <div className="bg-slate-100 fixed top-8 z-10">
           <div className="m-4 p-4 flex flex-row justify-center items-center">
 	    <ApartmentIcon />
@@ -71,7 +71,7 @@ export default function AptReal() {
          {queryObj && <ProdPanel queryObj={queryObj} addAptList={addAptList} />}
         </div>
       </div>
-      <div className="w-[750px] bg-orange-100">
+      <div className="w-full lg:w-[750px] bg-orange-100">
         <AptChart aptList={aptList} clearAptList={clearAptList} />
       </div>
     </div>

@@ -42,7 +42,7 @@ export default function AptReal() {
   return (
     <div className="flex flex-col lg:flex-row lg:justify-center bg-white">
       <div className="flex flex-col items-center w-full lg:w-[340px] pb-8 lg:h-screen bg-slate-100">
-        <div className="bg-slate-100 fixed top-8 z-10">
+        <div className="bg-slate-100 lg:fixed top-8 z-10">
           <div className="m-4 p-4 flex flex-row justify-center items-center">
 	    <ApartmentIcon />
             <blockquote className="ml-2 text-2xl font-bold italic text-slate-900">
@@ -67,7 +67,7 @@ export default function AptReal() {
             </div>
           </Paper>
         </div>
-        <div className="mt-[200px] overflow-y-auto">
+        <div className="w-full lg:mt-[200px] overflow-y-auto">
          {queryObj && <ProdPanel queryObj={queryObj} addAptList={addAptList} />}
         </div>
       </div>

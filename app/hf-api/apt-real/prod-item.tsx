@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 export default function ProdItem({prodObj, addAptList}) {
 
   return(
-    <Paper className="w-72 bg-white p-4 flex flex-col">
+    <Paper className="w-full lg:w-72 bg-white p-4 flex flex-col">
       <div className="text-slate-800 text-xl mb-1">{prodObj.aptNm}</div>
       <div className="text-slate-900">{prodObj.sggu}</div>
       <div className="text-slate-900 text-sm">{prodObj.cnstYr}년 준공</div>

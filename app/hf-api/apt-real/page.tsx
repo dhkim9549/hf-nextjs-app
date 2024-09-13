@@ -12,6 +12,8 @@ import ProdPanel from './prod-panel';
 import AptChart from './apt-chart';
 import { getAptTrd } from './get-data';
 
+import Footer from './footer.tsx'
+
 export default function AptReal() {
 
   let [aptNm, setAptNm] = useState();
@@ -42,7 +44,7 @@ export default function AptReal() {
   return (
     <div className="flex flex-col lg:flex-row lg:justify-center bg-white">
       <div className="flex flex-col items-center w-full lg:w-[340px] pb-8 lg:h-screen bg-slate-100">
-        <div className="bg-slate-100 lg:fixed top-8 z-10">
+        <div className="bg-slate-100 lg:fixed mt-8 lg:mt-0 lg:top-8 z-10">
           <div className="m-4 p-4 flex flex-row justify-center items-center">
 	    <ApartmentIcon />
             <blockquote className="ml-2 text-2xl font-bold italic text-slate-900">
@@ -63,7 +65,7 @@ export default function AptReal() {
               }}}
             />
             <div className="flex flex-col justify-center">
-              <Button variant="contained" size="large" onClick={setQuery}>조회</Button>
+              <Button variant="contained" size="large" className="w-20" onClick={setQuery}>조회</Button>
             </div>
           </Paper>
         </div>
@@ -71,8 +73,9 @@ export default function AptReal() {
          {queryObj && <ProdPanel queryObj={queryObj} addAptList={addAptList} />}
         </div>
       </div>
-      <div className="w-full lg:w-[750px] bg-orange-100">
+      <div className="w-full lg:w-[750px] bg-white">
         <AptChart aptList={aptList} clearAptList={clearAptList} />
+	<Footer />
       </div>
     </div>
   )

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 // import billboard.js
-import bb, {scatter, zoom} from "billboard.js";
+import bb, { scatter } from "billboard.js";
 import "billboard.js/dist/billboard.css";  // default css
 
 import IconButton from '@mui/material/IconButton';
@@ -66,10 +66,6 @@ export default function AptChart({aptList, clearAptList}) {
           show: true
         }
       },
-      zoom: {
-        enabled: zoom(),
-        type: "drag"
-      },
       size: {
         width: Math.min(700, window.innerWidth - 50),
         height: 400 
@@ -83,7 +79,7 @@ export default function AptChart({aptList, clearAptList}) {
   }, [aptList]);
 
   return (
-    <div className="mt-20 ml-5 flex flex-col">
+    <div className="my-20 ml-5 flex flex-col">
       <div id="chart2"></div>
       <div className="px-10">
         <IconButton aria-label="delete" size="large"
@@ -92,7 +88,7 @@ export default function AptChart({aptList, clearAptList}) {
 	    clearAptList();
 	  }}
 	>
-          <DeleteIcon fontSize="inherit" />
+          <DeleteIcon fontSize="large" />
         </IconButton>
       </div>
     </div>

@@ -71,7 +71,7 @@ export default function AptChart({aptList, clearAptList}) {
         type: "drag"
       },
       size: {
-        width: 700,
+        width: Math.min(700, window.innerWidth - 50),
         height: 400 
       },
       padding: {

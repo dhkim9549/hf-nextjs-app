@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 // import billboard.js
 import bb, { scatter } from "billboard.js";
 import "billboard.js/dist/billboard.css";  // default css
@@ -8,7 +8,13 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function AptChart({aptList, clearAptList}) {
 
+  let chartRef = useRef();
+
   useEffect(() => {
+
+    if(chartRef.current) {
+      chartRef.current.unload();
+    }
 
     let chartData = {};
     chartData.xs = {};
@@ -76,6 +82,8 @@ export default function AptChart({aptList, clearAptList}) {
       bindto: "#chart2"
     });
 
+    chartRef.current = chart2;
+
   }, [aptList]);
 
   return (
@@ -85,7 +93,7 @@ export default function AptChart({aptList, clearAptList}) {
         <IconButton aria-label="delete" size="large"
           disabled={aptList.length > 0 ? false : true}
           onClick={() => {
-	    clearAptList();
+            clearAptList();
 	  }}
 	>
           <DeleteIcon fontSize="large" />

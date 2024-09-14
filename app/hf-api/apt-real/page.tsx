@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, createContext, useEffect } from 'react';
+import { useState, useRef } from 'react';
 
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
@@ -18,27 +18,55 @@ export default function AptReal() {
 
   let [aptNm, setAptNm] = useState();
   let [queryObj, setQueryObj] = useState();
-  let [aptList, setAptList] = useState([]);
+
+  let aptListRef = useRef([]);
+  let chartRef = useRef();
 
   function setQuery() {
     setQueryObj({aptNm});
   }
 
   function addAptList(x) {
-    let list = aptList.slice();
-    let listStr = [];
-    list.forEach((e) => {listStr.push(JSON.stringify(e))});
-    if(!listStr.includes(JSON.stringify(x))) {
-      list.push(x);
-      getAptTrd(x).then((trd) => {
-        x.trd = trd;
-	setAptList(list);
-      })
+
+    let hasApt = false;
+    aptListRef.current.forEach((e) => {
+      if(e.sggu == x.sggu && e.aptNm == x.aptNm && e.area == x.area) {
+	hasApt = true;
+      }
+    });
+    if(hasApt) {
+      return;
     }
+
+    getAptTrd(x).then((trd) => {
+      x.trd = trd;
+      aptListRef.current.push(x);
+      return x;
+    })
+    .then((apt) => {
+      let chartData = {
+        xs: {},
+        columns: []
+      };
+      chartData.xs[apt.aptNm + apt.area] = apt.aptNm + apt.area + '_x';
+      let xArr = [apt.aptNm + apt.area + '_x'];
+      let yArr = [apt.aptNm + apt.area];
+      apt.trd.forEach((trd) => {
+        xArr.push(trd.ctrtDy.substring(0, 4) + '-' + trd.ctrtDy.substring(4, 6) + '-' + trd.ctrtDy.substring(6, 8));
+        yArr.push(trd.prc);
+      });
+      chartData.columns.push(xArr);
+      chartData.columns.push(yArr);
+      chartRef.current.load(chartData);
+    });
+  }
+
+  function setChartRef(chart) {
+    chartRef.current = chart;
   }
 
   function clearAptList() {
-    setAptList([]);
+    aptListRef.current = [];
   }
 
   return (
@@ -74,7 +102,7 @@ export default function AptReal() {
         </div>
       </div>
       <div className="w-full lg:w-[750px] bg-white">
-        <AptChart aptList={aptList} clearAptList={clearAptList} />
+        <AptChart setChartRef={setChartRef} clearAptList={clearAptList} />
 	<Footer />
       </div>
     </div>

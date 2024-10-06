@@ -41,11 +41,6 @@ export default function Home() {
           cont="한국주택금융공사 보증서 담보 시중은행 대출의 고객 특성별 금리"
           href="hf-api/rent-loan-multi-info"
         />
-        <Item
-          title="Apt real"
-          cont="Apt real"
-          href="hf-api/apt-real"
-        />
       </div>
       <Footer/>
     </div>

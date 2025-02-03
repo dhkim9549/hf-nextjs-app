@@ -59,7 +59,7 @@ export async function getRcmdData(queryObj) {
     + "&dataType=JSON"
     ;
 
-  let res = await fetch("https://apis.data.go.kr/B551408/jnse-rcmd-info/jnse-rcmd-list"
+  let res = await fetch("https://apis.data.go.kr/B551408/jnse-rcmd-info-v2/jnse-rcmd-list-v2"
     + apiStr
     + "&rentGrntAmt=" + queryObj.rentGrntAmt
     + "&trgtLwdgCd=" + queryObj.trgtLwdgCd
@@ -96,7 +96,7 @@ export async function getProdInfo(grntDvcd) {
     + "&dataType=JSON"
     ;
 
-  let res = await fetch("https://apis.data.go.kr/B551408/jnse-rcmd-info/jnse-prod-dtl-info"
+  let res = await fetch("https://apis.data.go.kr/B551408/jnse-rcmd-info-v2/jnse-prod-dtl-info-v2"
     + apiStr
     + "&grntDvcd=" + grntDvcd
     + "",
@@ -127,7 +127,7 @@ export async function getMaxRentAmtList(grntDvcd) {
     + "&dataType=JSON"
     ;
 
-  let res = await fetch("https://apis.data.go.kr/B551408/jnse-rcmd-info/jnse-max-rent-amt-list"
+  let res = await fetch("https://apis.data.go.kr/B551408/jnse-rcmd-info-v2/jnse-max-rent-amt-list-v2"
     + apiStr
     + "&grntDvcd=" + grntDvcd
     + "",
@@ -158,7 +158,7 @@ export async function getJnseGrtdLoanRatList(loanYm) {
     + "&dataType=JSON"
     ;
 
-  let res = await fetch("https://apis.data.go.kr/B551408/jnse-rcmd-info/jnse-grtd-loan-rat-list"
+  let res = await fetch("https://apis.data.go.kr/B551408/jnse-rcmd-info-v2/jnse-grtd-loan-rat-list-v2"
     + apiStr
     + "&loanYm=" + loanYm
     + "",

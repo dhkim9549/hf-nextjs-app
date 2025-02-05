@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { use } from 'react'
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 
 import Title from '@/app/ui/title';
@@ -22,17 +23,17 @@ export default function RentLoanMultiInfo({
   params,
   searchParams,
 }: {
-  params: { slug: string }
-  searchParams: { [key: string]: string | string[] | undefined }
+  params: Promise<{ slug: string }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) {
 
-  console.log("params = " + JSON.stringify(params));
-  console.log("searchParams = " + JSON.stringify(searchParams));
+  console.log("params = " + JSON.stringify(use(params)));
+  console.log("searchParams = " + JSON.stringify(use(searchParams)));
 
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  let [loanYm, setLoanYm] = useState(searchParams.loanYm ?? "L1M");
+  let [loanYm, setLoanYm] = useState(use(searchParams).loanYm ?? "L1M");
   let [bankLst, setBankLst] = useState([]);
   let [chartData, setChartData] = useState();
 
@@ -79,7 +80,7 @@ export default function RentLoanMultiInfo({
         <RadioGroup
           row
           name="loanYm"
-          defaultValue={searchParams.loanYm ?? "L1M"}
+          defaultValue={use(searchParams).loanYm ?? "L1M"}
           onChange={(e) => {
             setLoanYm(e.target.value)
           }}
@@ -92,7 +93,7 @@ export default function RentLoanMultiInfo({
       <div className="m-4 flex flex-wrap">
          {chartData ? 
            <>
-             <div className="w-full sm:w-[450px]">
+             <div className="w-full sm:w-[500px]">
                <DataGrid bankList={bankLst} />
              </div>
              <div className="mt-16 sm:mt-0 px-8 w-full lg:w-[550px]">

@@ -3,15 +3,15 @@ import { NumericFormat } from 'react-number-format';
 
 const columns = [
   { field: 'bankNm', headerName: '은행', width: 100, headerAlign: 'center', align: 'center' },
-  { field: 'avgLoanRat2', headerName: '대출금리(%)', width: 95, type: 'number', headerAlign: 'center',
-    valueFormatter: (params) => {
-      if (params.value == null) {
+  { field: 'avgLoanRat2', headerName: '대출금리(%)', width: 100, type: 'number', headerAlign: 'center',
+    valueFormatter: (value) => {
+      if (value == null) {
         return '';
       }
-      return params.value.toLocaleString(undefined, { minimumFractionDigits: 2 });
+      return value.toLocaleString(undefined, { minimumFractionDigits: 2 });
     },
   },
-  { field: 'cnt', headerName: '대출실행건수', width: 100, type: 'number', headerAlign: 'center' },
+  { field: 'cnt', headerName: '대출실행건수', width: 105, type: 'number', headerAlign: 'center' },
   { field: 'loanAmt', headerName: '대출실행금액(원)', width: 150, type: 'number', headerAlign: 'center'}
 ];
 

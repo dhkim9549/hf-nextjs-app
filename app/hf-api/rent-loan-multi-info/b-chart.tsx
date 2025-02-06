@@ -1,6 +1,6 @@
 'use client'
 
-import React, {useEffect, useRef} from "react";
+import {useEffect} from "react";
 
 // import billboard.js
 import bb, {treemap} from "billboard.js";

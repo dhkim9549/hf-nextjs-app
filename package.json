@@ -17,7 +17,8 @@
     "next": "15.1.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-number-format": "^5.4.3"
+    "react-number-format": "^5.4.3",
+    "three": "^0.173.0"
   },
   "devDependencies": {
     "@types/node": "^20",

@@ -3,7 +3,7 @@
 import {useEffect} from "react";
 import * as THREE from 'three';
 
-export default function TGraphics({chartData}) {
+export default function TGraphics({graphicsData, setCameraRef}) {
 
   useEffect(() => {
 
@@ -16,6 +16,7 @@ export default function TGraphics({chartData}) {
     const near = 0.1;
     const far = 5000;
     const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+    setCameraRef(camera);
     camera.position.z = 1;
 
     let octaArr = [];
@@ -85,7 +86,7 @@ export default function TGraphics({chartData}) {
     }
     requestAnimationFrame(render);
 
-  }, [chartData]);
+  }, []);
 
   return (
     <canvas id="three_canvas" className="w-96 h-96 m-5"></canvas>

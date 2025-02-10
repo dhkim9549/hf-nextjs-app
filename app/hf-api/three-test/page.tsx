@@ -1,20 +1,37 @@
 'use client'
 
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useRef } from 'react';
 
-import Title from '@/app/ui/title';
-
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import Paper from '@mui/material/Paper';
-import Card from '@mui/material/Card';
+import Button from '@mui/material/Button';
 
 import TGraphics from './t-graphics';
 
 export default function RentLoanMultiInfo() {
+
+  let cameraRef = useRef();
+
+  function moveZp() {
+    cameraRef.current.position.z += 1;
+  }
+  function moveZm() {
+    cameraRef.current.position.z -= 1;
+  }
+  function moveXp() {
+    cameraRef.current.position.x += 1;
+  }
+  function moveXm() {
+    cameraRef.current.position.x -= 1;
+  }
+  function moveYp() {
+    cameraRef.current.position.y += 1;
+  }
+  function moveYm() {
+    cameraRef.current.position.y -= 1;
+  }
+
+  function setCameraRef(camera) {
+    cameraRef.current = camera;
+  }
 
   return (
     <div className="">
@@ -28,7 +45,23 @@ export default function RentLoanMultiInfo() {
           three.js test
         </div>
         <div className="">
-          <TGraphics chartData={{}}/>
+          <TGraphics graphicsData={{}} setCameraRef={setCameraRef} />
+        </div>
+	<div>
+          <div className="bg-blue-200 w-80 p-4 flex flex-wrap gap-4">
+            <div className="flex gap-4">
+              <div><Button variant="contained" onClick={moveZm}>z -= 1</Button></div>
+              <div><Button variant="contained" onClick={moveZp}>z += 1</Button></div>
+            </div>
+            <div className="flex gap-4">
+              <div><Button variant="contained" onClick={moveXm}>x -= 1</Button></div>
+              <div><Button variant="contained" onClick={moveXp}>x += 1</Button></div>
+            </div>
+            <div className="flex gap-4">
+              <div><Button variant="contained" onClick={moveYm}>y -= 1</Button></div>
+              <div><Button variant="contained" onClick={moveYp}>y += 1</Button></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

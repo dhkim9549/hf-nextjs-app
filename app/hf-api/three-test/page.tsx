@@ -1,13 +1,12 @@
-'use client'
+"use client";
 
-import { useState, useRef } from 'react';
+import { useState, useRef } from "react";
 
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 
-import TGraphics from './t-graphics';
+import TGraphics from "./t-graphics";
 
 export default function RentLoanMultiInfo() {
-
   let cameraRef = useRef();
 
   function moveZp() {
@@ -41,30 +40,52 @@ export default function RentLoanMultiInfo() {
         </blockquote>
       </div>
       <div className="m-4 flex flex-wrap">
-        <div className="mb-4 w-full text-center">
-          three.js test
-        </div>
+        <div className="mb-4 w-full text-center">three.js test</div>
         <div className="">
           <TGraphics graphicsData={{}} setCameraRef={setCameraRef} />
         </div>
-	<div>
+        <div>
           <div className="bg-blue-200 w-80 p-4 flex flex-wrap gap-4">
             <div className="flex gap-4">
-              <div><Button variant="contained" onClick={moveZm}>z -= 1</Button></div>
-              <div><Button variant="contained" onClick={moveZp}>z += 1</Button></div>
+              <div>
+                <Button variant="contained" onClick={moveZm}>
+                  z -= 1
+                </Button>
+              </div>
+              <div>
+                <Button variant="contained" onClick={moveZp}>
+                  z += 1
+                </Button>
+              </div>
             </div>
             <div className="flex gap-4">
-              <div><Button variant="contained" onClick={moveXm}>x -= 1</Button></div>
-              <div><Button variant="contained" onClick={moveXp}>x += 1</Button></div>
+              <div>
+                <Button variant="contained" onClick={moveXm}>
+                  x -= 1
+                </Button>
+              </div>
+              <div>
+                <Button variant="contained" onClick={moveXp}>
+                  x += 1
+                </Button>
+              </div>
             </div>
             <div className="flex gap-4">
-              <div><Button variant="contained" onClick={moveYm}>y -= 1</Button></div>
-              <div><Button variant="contained" onClick={moveYp}>y += 1</Button></div>
+              <div>
+                <Button variant="contained" onClick={moveYm}>
+                  y -= 1
+                </Button>
+              </div>
+              <div>
+                <Button variant="contained" onClick={moveYp}>
+                  y += 1
+                </Button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 

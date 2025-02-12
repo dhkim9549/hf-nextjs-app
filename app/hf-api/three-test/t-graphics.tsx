@@ -1,13 +1,11 @@
-'use client'
+"use client";
 
-import {useEffect} from "react";
-import * as THREE from 'three';
+import { useEffect } from "react";
+import * as THREE from "three";
 
-export default function TGraphics({graphicsData, setCameraRef}) {
-
+export default function TGraphics({ graphicsData, setCameraRef }) {
   useEffect(() => {
-
-    const canvas = document.querySelector('#three_canvas');
+    const canvas = document.querySelector("#three_canvas");
 
     var scene = new THREE.Scene();
 
@@ -21,12 +19,12 @@ export default function TGraphics({graphicsData, setCameraRef}) {
 
     let octaArr = [];
     let randArr = [];
-    for(let i = 0; i < 5; i++) {
-      for(let j = 0; j < 5; j++) {
-        for(let k = 0; k < 20; k++) {
+    for (let i = 0; i < 5; i++) {
+      for (let j = 0; j < 5; j++) {
+        for (let k = 0; k < 20; k++) {
           let r = 0.3 * 1;
           let geometry = new THREE.BoxGeometry(r, r, r);
-          let material = new THREE.MeshPhongMaterial({color: 0xaa8844});
+          let material = new THREE.MeshPhongMaterial({ color: 0xaa8844 });
           let octa = new THREE.Mesh(geometry, material);
           octa.position.x = 3 - i * 2;
           octa.position.y = 3 - j * 2;
@@ -38,15 +36,15 @@ export default function TGraphics({graphicsData, setCameraRef}) {
       }
     }
 
-    const color = 0xFFFFFF;
+    const color = 0xffffff;
     const intensity = 7.5;
     const light = new THREE.DirectionalLight(color, intensity);
     light.position.set(100, 100, 100);
     scene.add(light);
 
-    const lightA = new THREE.AmbientLight( 0x404040 ); // soft white light
+    const lightA = new THREE.AmbientLight(0x404040); // soft white light
     // scene.add( lightA );
-    
+
     const renderer = new THREE.WebGLRenderer({
       canvas,
       antialias: true,
@@ -62,7 +60,7 @@ export default function TGraphics({graphicsData, setCameraRef}) {
       }
       return needResize;
     }
-    
+
     function render(time) {
       time *= 0.001;
       if (resizeRendererToDisplaySize(renderer)) {
@@ -72,7 +70,7 @@ export default function TGraphics({graphicsData, setCameraRef}) {
       }
       octaArr.forEach((cube, ndx) => {
         let speed = 0.0;
-        if(randArr[ndx] < 0.95) {
+        if (randArr[ndx] < 0.95) {
           speed = (0.02 + randArr[ndx] * 1) / 5;
         } else {
           speed = (0.02 + randArr[ndx] * 5) * 1 + 1;
@@ -85,10 +83,11 @@ export default function TGraphics({graphicsData, setCameraRef}) {
       requestAnimationFrame(render);
     }
     requestAnimationFrame(render);
-
   }, []);
 
   return (
-    <canvas id="three_canvas" className="w-96 h-96 m-5"></canvas>
+    <div>
+      <canvas id="three_canvas" className="w-96 h-96 m-5"></canvas>
+    </div>
   );
 }

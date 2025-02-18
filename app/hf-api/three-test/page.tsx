@@ -8,6 +8,12 @@ import TGraphics from "./t-graphics";
 
 export default function RentLoanMultiInfo() {
   let cameraRef = useRef();
+  let [count, setCount] = useState(0);
+
+  function addCount() {
+    count += 1;
+    setCount(count);
+  }
 
   function moveZp() {
     cameraRef.current.position.z += 1;
@@ -83,9 +89,15 @@ export default function RentLoanMultiInfo() {
               </div>
             </div>
           </div>
+          <div className="bg-red-200 w-80 p-4 flex flex-wrap gap-4">
+            <div>
+              <Button variant="contained" onClick={addCount}>
+                {count}
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
 }
-

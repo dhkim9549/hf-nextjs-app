@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="ko" className={notoSansKR.className}>
       <body className="">
         <div className="fixed top-0 z-50 w-full bg-slate-800 text-slate-100 text-center p-1">
-          FAIL FAST
+          Wrong is Right
         </div>
 	<div className="">
           {children}
